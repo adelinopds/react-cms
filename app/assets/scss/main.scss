@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Caveat:400,700');
 
 @import "base/colors";
+@import "base/base";
 
 @import "elements/checkbox";
 
@@ -11,6 +12,4 @@
 @import "components/login";
 
 
-body {
-  color: $primary-color;
-}
+

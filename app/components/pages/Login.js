@@ -11,50 +11,65 @@ import { loginUser } from '../../actions/userAction';
 })
 export default class Login extends React.Component {
 
+  state = {
+    screenHeight: 0
+  };
+
+  componentDidMount = () => {
+    window.addEventListener('resize', this.calculations);
+    this.calculations();
+  };
+
+  componentWillUnmount = () => {
+    window.removeEventListener('resize', this.calculations);
+  };
+
+  calculations = () => {
+    const screenHeight = window.innerHeight;
+
+    this.setState({
+      screenHeight
+    });
+  };
+
   render = () => {
 
     return (
       <Grid>
-        <div className="card card-container">
-          <img alt="test" className="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-          <p className="profile-name-card"/>
-          <form className="form-signin">
-            <span className="reauth-email">test</span>
-            <input type="email" className="form-control" placeholder="Email address" required />
-            <input type="password" className="form-control" placeholder="Password" required />
-            <div className="checkbox">
-              <label htmlFor="js-remember-me">
-                <input id="js-remember-me" type="checkbox" value="remember-me"/> Remember me
-              </label>
-
-
-              <label htmlFor="js-login-checkbox" className="control control--checkbox js-contact-list__control-checkbox">
-                <input id="js-login-checkbox" type="checkbox" onChange={() => {}}/>
-                <div className="control__indicator"/>
-                Remember me
-              </label>
-
-
-            </div>
-            <Button color="primary" type="submit">Sign in</Button>
-          </form>
-          <a href="#" className="forgot-password">
-            Forgot the password?
-          </a>
-        </div>
-
         <Row>
-          <Col xs={12} md={12}>
-            <div>Login</div>
-            <div>{this.props.token}</div>
-            <button
-              onClick={() => {
-                this.props.dispatch(loginUser('qweqeqwewqewq'));
-              }}
-            >
-              Click Me
-            </button>
-            <Button color="danger">Danger!</Button>
+          <Col md={12} className="login-container" style={{ height: this.state.screenHeight }}>
+            <div className="login-card">
+              <img alt="test" className="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+              <p className="profile-name-card"/>
+              <form className="login-form">
+
+                <input id="inputEmail" type="email" className="form-control" placeholder="Email address" required />
+                <input id="inputPassword" type="password" className="form-control" placeholder="Password" required />
+
+                <div className="checkbox">
+                  <label htmlFor="js-login-checkbox" className="custom-control custom-control--checkbox js-contact-list__control-checkbox">
+                    <input id="js-login-checkbox" type="checkbox" onChange={() => {}}/>
+                    <div className="custom-control__indicator"/>
+                    <span className="login-remember">Remember me</span>
+                  </label>
+                </div>
+
+                <Button
+                  type="submit"
+                  className="custom-color"
+                  onClick={() => {
+                    this.props.dispatch(loginUser('qweqeqwewqewq'));
+                  }}
+                >
+                  Sign in
+                </Button>
+
+              </form>
+
+              <div className="forgot-password" onClick={() => {}}>
+                Forgot the password?
+              </div>
+            </div>
           </Col>
         </Row>
 
