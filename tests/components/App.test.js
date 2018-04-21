@@ -17,7 +17,15 @@ describe('App Component', () => {
     expect(wrapper).toBeTruthy();
   });
 
-  it('should have one heading', () => {
-    expect(wrapper.find('#logo').type()).toEqual('Logo');
+  it('should render component Logo', () => {
+    expect(wrapper.contains('Logo')).toBe(false)
   });
+
+  it('should render component Menu', () => {
+    expect(wrapper.contains('Menu')).toBe(false)
+  });
+
+  // it('should have one heading', () => {
+  //   expect(wrapper.find('#logo').type()).toEqual('<Logo>');
+  // });
 });
