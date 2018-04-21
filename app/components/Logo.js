@@ -19,7 +19,7 @@ export default class Logo extends React.Component {
 		return (
 			<LogoWrapper>
 				<Link to="/">
-					<img src={logoImage} alt="logo agrocalculator"/>
+					<img src={logoImage} alt="entymon logo"/>
 				</Link>
 			</LogoWrapper>
 		);
