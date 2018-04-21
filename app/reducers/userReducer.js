@@ -11,12 +11,12 @@ export default (state = initialState, action) => {
     case LOGIN:
       return {
         ...state,
-        token: action.payload
+        userToken: action.payload
       };
     case LOGOUT:
       return {
         ...state,
-        token: ''
+        userToken: ''
       };
     default:
       return state;
