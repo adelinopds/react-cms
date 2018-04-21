@@ -1,8 +1,8 @@
 import { LOGIN, LOGOUT } from '../constants/constants';
 
-export const loginUser = token => ({
+export const loginUser = user => ({
   type: LOGIN,
-  payload: token
+  payload: user
 });
 
 export const logoutUser = () => ({

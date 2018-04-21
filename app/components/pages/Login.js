@@ -6,7 +6,7 @@ import { loginUser } from '../../actions/userAction';
 
 @connect((state) => {
   return {
-    token: state.login.userToken
+    authorized: state.login.authorized,
   };
 })
 export default class Login extends React.Component {
@@ -16,8 +16,14 @@ export default class Login extends React.Component {
   };
 
   componentDidMount = () => {
-    window.addEventListener('resize', this.calculations);
     this.calculations();
+    window.addEventListener('resize', this.calculations);
+  };
+
+  componentWillReceiveProps = (nextProps) => {
+    if (nextProps.authorized) {
+      this.props.history.push('/');
+    }
   };
 
   componentWillUnmount = () => {
@@ -26,10 +32,14 @@ export default class Login extends React.Component {
 
   calculations = () => {
     const screenHeight = window.innerHeight;
+    this.setState({ screenHeight });
+  };
 
-    this.setState({
-      screenHeight
-    });
+  signIn = () => {
+    this.props.dispatch(loginUser({
+      email: 'admin@admin.com',
+      password: 'admin'
+    }));
   };
 
   render = () => {
@@ -57,9 +67,7 @@ export default class Login extends React.Component {
                 <Button
                   type="submit"
                   className="custom-color"
-                  onClick={() => {
-                    this.props.dispatch(loginUser('qweqeqwewqewq'));
-                  }}
+                  onClick={() => this.signIn()}
                 >
                   Sign in
                 </Button>

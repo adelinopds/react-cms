@@ -1,8 +1,12 @@
 import { LOGIN, LOGOUT } from '../constants/constants';
 
 const initialState = {
-  userToken: '',
-  expire: ''
+  user: {
+    email: '',
+    password: ''
+  },
+  expire: '',
+  authorized: false
 };
 
 export default (state = initialState, action) => {
@@ -11,12 +15,13 @@ export default (state = initialState, action) => {
     case LOGIN:
       return {
         ...state,
-        userToken: action.payload
+        authorized: true,
+        user: action.payload
       };
     case LOGOUT:
       return {
         ...state,
-        userToken: ''
+        user: ''
       };
     default:
       return state;
