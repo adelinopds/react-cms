@@ -1,0 +1,64 @@
+$bck-image: url('../images/blueberries-1600x1200-shadow.png');
+
+.home-page-wrapper {
+
+}
+
+.home-page {
+
+  &__background {
+    position: relative;
+
+    &::after {
+      content: "";
+      background-color: $black;
+      background-image: $bck-image;
+      background-size: 100%;
+      opacity: 0.9;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .background-container {
+
+      &__info-container {
+        font-family: 'Caveat', sans-serif;
+        color: $second-color;
+
+        > h1 {
+          text-align: center;
+          font-size: 200px;
+          margin-bottom: 20px;
+        }
+        > p {
+          text-align: center;
+          font-size: 44px;
+          font-weight: 700;
+        }
+
+        a.custom-button-link {
+          transition: background-color .5s, color .5s;
+
+          .custom-button {
+            color: $primary-color;
+            margin-top: 10px;
+            line-height: 50px;
+            font-size: 40px;
+          }
+
+          &:hover {
+            .custom-button {
+              color: #fff;
+              background-color: $second-color;
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
