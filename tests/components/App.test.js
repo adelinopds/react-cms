@@ -25,9 +25,6 @@ describe('App Component', () => {
     expect(wrapper.contains('Menu')).toBe(false)
   });
 
-  it('should return true', () => {
-    expect(wrapper.instance().checkBoxChecked()).equals(true);
-  })
 
   // it('should have one heading', () => {
   //   expect(wrapper.find('#logo').type()).toEqual('<Logo>');

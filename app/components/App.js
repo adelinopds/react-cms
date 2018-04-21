@@ -8,11 +8,7 @@ const LinkWrapper = styled.div.attrs({ className: 'menu-custom__menu-link' })``;
 
 
 export default class App extends React.Component {
-
-  checkBoxChecked = () => {
-    return true;
-  };
-
+  
   render = () => {
     return (
       <div>
