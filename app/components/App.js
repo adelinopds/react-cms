@@ -12,13 +12,12 @@ export default class App extends React.Component {
   render = () => {
     return (
       <div>
-        <Logo id="logo"/>
         <Menu
-          right
           pageWrapId="js-page-wrapper"
           outerContainerId="js-main-wrapper"
           burgerButtonClassName="menu-custom__burger-button"
         >
+          <Logo id="logo"/>
           <LinkWrapper><Link to="/login">Login</Link></LinkWrapper>
           <LinkWrapper><Link to="/blog">Blog</Link></LinkWrapper>
           <hr/>

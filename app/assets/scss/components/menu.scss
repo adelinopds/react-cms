@@ -48,8 +48,6 @@
 
 .menu-custom {
   &__burger-button {
-    right: 36px;
-    left: auto;
     .bm-burger-bars {
       background-color: $second-color;
     }
@@ -59,7 +57,7 @@
       display: block;
       font-family: 'Roboto', sans-serif;
       color: $second-color;
-      padding: 15px 0;
+      padding: 5px 0;
       transition: color 0.5s;
       &:hover {
         color: $second-colo-hover;

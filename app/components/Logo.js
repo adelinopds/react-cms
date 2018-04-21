@@ -3,14 +3,17 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import logoImage from '../assets/images/agrokalkulator-logo.png';
 
-const LogoWrapper = styled.div`
-  z-index: 1000;
-	position: fixed;
-	left: 36px;
-	top: 30px;
+const LogoWrapper = styled.div.attrs({ className: 'logo-wrapper' })`
+	display: flex;
+	justify-content: center;
+	height: 120px;
 	
-	> a > img {
-		width: 80px;
+	> a {
+		display: flex;
+		> img {
+			width: 80px;
+			height: 80px;
+		}
 	}
 `;
 
