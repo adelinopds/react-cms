@@ -28,7 +28,7 @@ const Root = () => {
         </MainWrapper>
       </Router>
     </Provider>
-	);
+	)
 };
 
 export default Root;
