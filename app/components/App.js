@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
-import Logo from './Logo';
+import Logo from './partials/Logo';
 
 const LinkWrapper = styled.div.attrs({ className: 'menu-custom__menu-link' })``;
 
 
 export default class App extends React.Component {
-  
+
   render = () => {
     return (
       <div>

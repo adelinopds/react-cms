@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import logoImage from '../assets/images/agrokalkulator-logo.png';
+import logoImage from '../../assets/images/agrokalkulator-logo.png';
 
 const LogoWrapper = styled.div.attrs({ className: 'logo-wrapper' })`
 	display: flex;

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Button } from 'reactstrap';
-import { loginUser } from '../../actions/userAction';
+import { loginUser } from '../actions/userAction';
 
 @connect((state) => {
   return {
