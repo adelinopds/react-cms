@@ -19,7 +19,9 @@ export default class PrimaryMenu extends React.Component {
         >
           <Logo id="logo"/>
           <LinkWrapper><Link to="/login">Login</Link></LinkWrapper>
-          <LinkWrapper><Link to="/blog">Blog</Link></LinkWrapper>
+          <LinkWrapper><Link to="/register">Register</Link></LinkWrapper>
+          <LinkWrapper><Link to="/user">User</Link></LinkWrapper>
+          <LinkWrapper><Link to="/post">Post</Link></LinkWrapper>
           <hr/>
           <LinkWrapper><Link to="/contact">Contact</Link></LinkWrapper>
         </Menu>

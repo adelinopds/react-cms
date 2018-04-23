@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import { loginUser } from '../actions/userAction';
 
 @connect((state) => {
@@ -76,6 +77,10 @@ export default class Login extends React.Component {
 
               <div className="forgot-password" onClick={() => {}}>
                 Forgot the password?
+              </div>
+
+              <div className="register">
+                <Link to="/register">Register</Link>
               </div>
             </div>
           </Col>
