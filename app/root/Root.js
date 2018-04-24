@@ -8,15 +8,13 @@ import Routes from './Routes';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import '../assets/scss/main.scss';
+
 import App from '../components/App';
 
 const store = configureStore();
 
 const MainWrapper = styled.div.attrs({ className: 'main-wrapper' })``;
 const PageWrapper = styled.div.attrs({ className: 'page-wrapper' })``;
-
-import configureFakeBackend from '../helpers/fakeBackend';
-configureFakeBackend();
 
 const Root = () => {
 

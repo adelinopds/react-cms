@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from '../constants/constants';
+import { LOGOUT } from '../constants/constants';
 import { LOGIN_REQUEST } from '../constants/userConstants';
 
 const initialState = {
@@ -32,7 +32,8 @@ export default (state = initialState, action) => {
       };
     case LOGIN_REQUEST.FULFILLED:
 
-      // save data to local storage and rediredct with 'history'
+      localStorage.setItem('user-token', action.payload.token);
+      // save data to local storage and redirect with 'history'
       return {
         ...state,
         authorized: true,
