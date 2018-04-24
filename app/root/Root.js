@@ -15,6 +15,9 @@ const store = configureStore();
 const MainWrapper = styled.div.attrs({ className: 'main-wrapper' })``;
 const PageWrapper = styled.div.attrs({ className: 'page-wrapper' })``;
 
+import configureFakeBackend from '../helpers/fakeBackend';
+configureFakeBackend();
+
 const Root = () => {
 
 	return (

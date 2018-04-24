@@ -1,9 +1,12 @@
+import axios from 'axios';
+
 // array in local storage for registered users
 const users = JSON.parse(localStorage.getItem('users')) || [];
 
 const configureFakeBackend = () => {
 
-  const realFetch = window.fetch;
+  const realFetch = window.axios;
+  console.log(realFetch, 'realFetch');
 
   window.fetch = (url, opts) => {
 
@@ -138,4 +141,4 @@ const configureFakeBackend = () => {
   };
 };
 
-export default configureFakeBackend();
+export default configureFakeBackend;
