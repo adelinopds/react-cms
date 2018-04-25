@@ -7,7 +7,7 @@ const initialState = {
     username: '',
     firstName: '',
     lastName: '',
-    token: ''
+    token: '',
   },
   expire: '',
   fetching: false,
@@ -31,11 +31,18 @@ export default (state = initialState, action) => {
         authError: action.payload
       };
     case LOGIN_REQUEST.FULFILLED:
-      localStorage.setItem('user-token', action.payload.data.token);
+      if (action.payload.data.token) {
+        localStorage.setItem('user-token', action.payload.data.token);
+        return {
+          ...state,
+          fetching: false,
+          user: action.payload.data
+        };
+      }
       return {
         ...state,
         fetching: false,
-        user: action.payload.data
+        authError: action.payload.data.error
       };
     case LOGOUT:
       localStorage.removeItem('user-token');

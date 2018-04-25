@@ -9,7 +9,7 @@ import PrimaryMenu from '../components/menus/PrimaryMenu';
 
 import '../assets/scss/main.scss';
 
-const store = configureStore();
+export const store = configureStore();
 
 const MainWrapper = styled.div.attrs({ className: 'main-wrapper' })``;
 const PageWrapper = styled.div.attrs({ className: 'page-wrapper' })``;

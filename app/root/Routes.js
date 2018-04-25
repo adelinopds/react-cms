@@ -7,12 +7,13 @@ import HomePage from '../components/pages/Home';
 import Post from '../components/pages/Post';
 import Login from '../components/Login';
 import SignUp from '../components/SignUp';
+import isAuthorized from '../helpers/isAuthorized';
 
 const AuthenticatedRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={(props) => {
-      if (localStorage.getItem('user-token')) {
+      if (isAuthorized()) {
         return (
           <Component {...props}/>
         );

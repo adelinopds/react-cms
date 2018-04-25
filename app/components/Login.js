@@ -5,40 +5,63 @@ import { Button } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
 import { loginUser } from '../actions/userAction';
 import isAuthorized from '../helpers/isAuthorized';
+import loginValidator from './validators/loginValidator';
 
 @connect((store) => {
   return {
-    user: store.user.user
+    user: store.user.user,
+    authError: store.user.authError,
   };
 })
 export default class Login extends React.Component {
 
   state = {
+    remember: true,
+    email: '',
+    password: '',
+    alerts: {
+      email: false,
+      password: false,
+    },
     screenHeight: 0
   };
 
   componentDidMount = () => {
-    this.calculations();
-    window.addEventListener('resize', this.calculations);
+    this.heightCalc();
+    window.addEventListener('resize', this.heightCalc);
   };
 
   componentWillUnmount = () => {
-    window.removeEventListener('resize', this.calculations);
+    window.removeEventListener('resize', this.heightCalc);
   };
 
-  calculations = () => {
+  heightCalc = () => {
     const screenHeight = window.innerHeight;
     this.setState({ screenHeight });
   };
 
   signIn = () => {
-    this.props.dispatch(loginUser({
-      email: 'admin@admin.com',
-      password: 'admin'
-    }));
+
+    const valid = loginValidator(this.state.email, this.state.password, this.props.authError);
+    if (valid) {
+      const { email, password } = valid;
+      this.setState({
+        alerts: {
+          email,
+          password
+        }
+      });
+    } else {
+      const { email, password } = this.state;
+      this.props.dispatch(loginUser({
+        email,
+        password
+      }));
+    }
   };
 
   render = () => {
+    const { alerts } = this.state;
 
     const authorized = isAuthorized();
     if (authorized) {
@@ -53,22 +76,53 @@ export default class Login extends React.Component {
               <p className="profile-name-card"/>
               <form className="login-form">
 
-                <input id="inputEmail" type="email" className="form-control" placeholder="Email address" required/>
-                <input id="inputPassword" type="password" className="form-control" placeholder="Password" required/>
+                <input
+                  onChange={(event) => {
+                    this.setState({
+                      email: event.target.value
+                    });
+                  }}
+                  value={this.state.email}
+                  type="email"
+                  className="form-control"
+                  placeholder="Email address"
+                />
+                <span className="form-alert">{alerts.email}</span>
+
+                <input
+                  onChange={(event) => {
+                    this.setState({
+                      password: event.target.value
+                    });
+                  }}
+                  value={this.state.password}
+                  type="password"
+                  className="form-control"
+                  placeholder="Password"
+                />
+                <span className="form-alert">{alerts.password}</span>
 
                 <div className="checkbox">
                   <label
                     htmlFor="js-login-checkbox"
                     className="custom-control custom-control--checkbox js-contact-list__control-checkbox"
                   >
-                    <input id="js-login-checkbox" type="checkbox" onChange={() => {}} />
+                    <input
+                      id="js-login-checkbox"
+                      type="checkbox"
+                      onChange={() => {
+                        this.setState({
+                          remember: !this.state.remember
+                        });
+                      }}
+                      checked={this.state.remember ? 'checked' : ''}
+                    />
                     <div className="custom-control__indicator"/>
                     <span className="login-remember">Remember me</span>
                   </label>
                 </div>
 
                 <Button
-                  type="submit"
                   className="cms-button"
                   onClick={() => this.signIn()}
                 >
@@ -77,7 +131,9 @@ export default class Login extends React.Component {
 
               </form>
 
-              <div className="forgot-password" onClick={() => {}}>
+              <div
+                className="forgot-password"
+                onClick={() => {}}>
                 Forgot the password?
               </div>
 
@@ -97,5 +153,5 @@ export default class Login extends React.Component {
 
       </Grid>
     );
-    }
+  }
 }

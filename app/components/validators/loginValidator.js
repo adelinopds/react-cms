@@ -8,17 +8,16 @@ const maxLt = (value, maxLength) => (!value.toString().trim().length > maxLength
 
 const minLt = (value, minLength) => (!value.toString().trim().length <= minLength);
 
-const loginValidator = (email, password) => {
-console.log(email, 'qweqweqwewq qwewqe');
+const loginValidator = (email, password, authError) => {
+
   let emailStatus = true;
   let passwordStatus = true;
   const res = {
     email: '',
     password: ''
   };
-
+  
   if (required(email) && emailStatus) {
-    console.log(email, 'wewqewq');
     emailStatus = false;
     res.email = 'email is required';
   }
