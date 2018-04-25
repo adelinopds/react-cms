@@ -5,22 +5,21 @@ import { connect } from 'react-redux';
 import { slide as Menu } from 'react-burger-menu';
 import Logo from '../partials/Logo';
 import { logoutUser } from '../../actions/userAction';
+import isAuthorized from '../../helpers/isAuthorized';
 
 const LinkWrapper = styled.div.attrs({ className: 'menu-custom__menu-link' })``;
 
 @connect((store) => {
   return {
-    authorized: store.user.authorized
+    user: store.user.user
   };
 })
 export default class PrimaryMenu extends React.Component {
 
-  static defaultProps = {
-    authorized: false
-  };
-
   render = () => {
-    if (this.props.authorized) {
+
+    const authorized = isAuthorized();
+    if (authorized) {
       return (
         <div>
           <Menu
@@ -30,7 +29,7 @@ export default class PrimaryMenu extends React.Component {
           >
             <Logo id="logo"/>
             {
-              (this.props.authorized) ?
+              (authorized) ?
                 <LinkWrapper>
                   <div onClick={() => {
                     this.props.dispatch(logoutUser());
@@ -39,7 +38,7 @@ export default class PrimaryMenu extends React.Component {
                 </LinkWrapper> :
                 <LinkWrapper><Link to="/login">Login</Link></LinkWrapper>
             }
-            <LinkWrapper><Link to="/register">Register</Link></LinkWrapper>
+            <LinkWrapper><Link to="/sign-up">Register</Link></LinkWrapper>
             <LinkWrapper><Link to="/user">User</Link></LinkWrapper>
             <LinkWrapper><Link to="/post">Post</Link></LinkWrapper>
             <hr/>

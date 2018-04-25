@@ -1,8 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
 @import url('https://fonts.googleapis.com/css?family=Caveat:400,700');
 
+@import "~bootstrap/scss/bootstrap";
+
 @import "base/colors";
 @import "base/base";
+@import "mixin/general-classes";
 
 @import "elements/checkbox";
 
@@ -10,6 +13,4 @@
 @import "components/home-page";
 @import "components/menu";
 @import "components/login";
-
-
-
+@import "components/registration";

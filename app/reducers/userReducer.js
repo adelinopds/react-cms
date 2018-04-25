@@ -1,5 +1,5 @@
 import { LOGOUT } from '../constants/constants';
-import { LOGIN_REQUEST } from '../constants/userConstants';
+import { AUTHORIZED, LOGIN_REQUEST } from '../constants/userConstants';
 
 const initialState = {
   user: {
@@ -31,19 +31,16 @@ export default (state = initialState, action) => {
         authError: action.payload
       };
     case LOGIN_REQUEST.FULFILLED:
-
-      localStorage.setItem('user-token', action.payload.token);
-      // save data to local storage and redirect with 'history'
+      localStorage.setItem('user-token', action.payload.data.token);
       return {
         ...state,
-        authorized: true,
         fetching: false,
-        user: action.payload
+        user: action.payload.data
       };
     case LOGOUT:
+      localStorage.removeItem('user-token');
       return {
         ...state,
-        authorized: false,
         user: {}
       };
     default:

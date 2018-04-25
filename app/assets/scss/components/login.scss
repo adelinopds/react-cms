@@ -3,6 +3,8 @@
   justify-content: center;
   align-items: center;
 
+  @include cmsButtonClass();
+
   .login-card {
     width: 360px;
     display: flex;
@@ -12,10 +14,6 @@
     background-color: $light-grey;
     border-radius: 2px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-
-    &--separator {
-      border-bottom-color: $dark-grey;
-    }
 
     .profile-img-card {
       width: 96px;
@@ -60,13 +58,14 @@
         position: relative;
         box-sizing: border-box;
         border-radius: 0;
+        border: 0;
       }
 
       .form-control {
           &:focus {
-          border-color: rgb(104, 145, 162);
+          border: 0;
           outline: 0;
-          box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $grey;
         }
       }
 
@@ -84,7 +83,10 @@
           color: $medium-grey;
         }
       }
+    }
 
+    .sign-up {
+      margin-top: 35px;
     }
 
     .forgot-password {

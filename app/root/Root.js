@@ -5,11 +5,9 @@ import styled from 'styled-components';
 import { Provider } from 'react-redux';
 import configureStore from '../store/configureStore';
 import Routes from './Routes';
+import PrimaryMenu from '../components/menus/PrimaryMenu';
 
-import 'bootstrap/dist/css/bootstrap.css';
 import '../assets/scss/main.scss';
-
-import App from '../components/App';
 
 const store = configureStore();
 
@@ -22,7 +20,7 @@ const Root = () => {
     <Provider store={store}>
       <Router>
         <MainWrapper id="js-main-wrapper">
-          <App />
+          <PrimaryMenu />
           <PageWrapper id="js-page-wrapper">
             <Routes />
           </PageWrapper>

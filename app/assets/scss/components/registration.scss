@@ -1,0 +1,18 @@
+.sign-up-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include cmsButtonClass();
+
+  .sign-up-card {
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+
+    padding: 50px;
+    background-color: $light-grey;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  }
+}

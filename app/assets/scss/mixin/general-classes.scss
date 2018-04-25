@@ -1,0 +1,13 @@
+@mixin cmsButtonClass() {
+  .cms-button {
+    background-color: $dark-grey;
+    border-radius: 0;
+    transition: background-color .5s;
+    border: 0;
+    width: 100%;
+
+    &:hover {
+      background-color: $very-dark-grey;
+    }
+  }
+}

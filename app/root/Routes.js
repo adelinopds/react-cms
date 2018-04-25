@@ -6,19 +6,36 @@ import ContactPage from '../components/pages/Contact';
 import HomePage from '../components/pages/Home';
 import Post from '../components/pages/Post';
 import Login from '../components/Login';
-import Register from '../components/Register';
+import SignUp from '../components/SignUp';
 
+const AuthenticatedRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) => {
+      if (localStorage.getItem('user-token')) {
+        return (
+          <Component {...props}/>
+        );
+      }
+      return (
+        <Redirect to={{
+          pathname: '/login',
+          state: { from: props.location }
+        }}/>
+      );
+    }}/>
+);
 
 const Routes = () => {
 
   return (
     <Switch>
-      <Route path="/" component={HomePage} exact/>
+      <AuthenticatedRoute path="/" component={HomePage} exact/>
       <Route path="/login" component={Login}/>
-      <Route path="/register" component={Register}/>
-      <Route path="/post" component={Post}/>
-      <Route path="/user" component={User}/>
-      <Route path="/contact" component={ContactPage}/>
+      <Route path="/sign-up" component={SignUp}/>
+      <AuthenticatedRoute path="/post" component={Post}/>
+      <AuthenticatedRoute path="/user" component={User}/>
+      <AuthenticatedRoute path="/contact" component={ContactPage}/>
       <Redirect from="*" to="/"/>
     </Switch>
   );
