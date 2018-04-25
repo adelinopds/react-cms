@@ -4,6 +4,7 @@
   align-items: center;
 
   @include cmsButtonClass();
+  @include formAlert('form-alert');
 
   .login-card {
     width: 360px;
@@ -40,8 +41,8 @@
         background-color: transparent;
       }
 
-      #inputEmail,
-      #inputPassword {
+      input[type=email],
+      input[type=password] {
         direction: ltr;
         height: 44px;
         font-size: 16px;
@@ -53,7 +54,6 @@
       button {
         width: 100%;
         display: block;
-        margin-bottom: 10px;
         z-index: 1;
         position: relative;
         box-sizing: border-box;

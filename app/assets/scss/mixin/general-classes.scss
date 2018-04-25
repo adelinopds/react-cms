@@ -11,3 +11,14 @@
     }
   }
 }
+
+@mixin formAlert($class: 'form-alert') {
+  .#{$class} {
+    height: 20px;
+    margin-bottom: 10px;
+    padding-left: 12px;
+    display: block;
+    color: red;
+    font-size: 12px;
+  }
+}
