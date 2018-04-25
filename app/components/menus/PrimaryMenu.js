@@ -36,9 +36,11 @@ export default class PrimaryMenu extends React.Component {
                   }}>Logout
                   </div>
                 </LinkWrapper> :
-                <LinkWrapper><Link to="/login">Login</Link></LinkWrapper>
+                ([
+                  <LinkWrapper><Link to="/login">Login</Link></LinkWrapper>,
+                  <LinkWrapper><Link to="/sign-up">Register</Link></LinkWrapper>
+                ])
             }
-            <LinkWrapper><Link to="/sign-up">Register</Link></LinkWrapper>
             <LinkWrapper><Link to="/user">User</Link></LinkWrapper>
             <LinkWrapper><Link to="/post">Post</Link></LinkWrapper>
             <hr/>

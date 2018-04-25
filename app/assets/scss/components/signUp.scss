@@ -15,4 +15,13 @@
     border-radius: 2px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
   }
+
+  .register-form {
+
+    > input {
+      width: 100%;
+      border-radius: 0;
+      margin-bottom: 20px;
+    }
+  }
 }
