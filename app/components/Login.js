@@ -76,8 +76,7 @@ export default class Login extends React.Component {
         <Row>
           <Col md={12} className="login-container" style={{ height: this.state.screenHeight }}>
             <div className="login-card">
-              <img alt="test" className="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-              <p className="profile-name-card"/>
+              <h3 className="form-title">Sing in</h3>
               <form className="login-form">
 
                 <span className="form-alert">{errorMessage}</span>
