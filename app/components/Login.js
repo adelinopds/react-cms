@@ -19,10 +19,7 @@ export default class Login extends React.Component {
     remember: true,
     email: '',
     password: '',
-    alerts: {
-      email: false,
-      password: false,
-    },
+    errorMessage: '',
     screenHeight: 0
   };
 
@@ -41,27 +38,26 @@ export default class Login extends React.Component {
   };
 
   signIn = () => {
+    this.setState({
+      errorMessage: ''
+    });
 
-    const valid = loginValidator(this.state.email, this.state.password, this.props.authError);
-    if (valid) {
-      const { email, password } = valid;
-      this.setState({
-        alerts: {
-          email,
-          password
-        }
-      });
-    } else {
-      const { email, password } = this.state;
+    const { email, password } = this.state;
+    try {
+      loginValidator(email, password, this.props.authError);
       this.props.dispatch(loginUser({
         email,
         password
       }));
+    } catch (error) {
+      this.setState({
+        errorMessage: `${error.type} ${error.message}`
+      });
     }
   };
 
   render = () => {
-    const { alerts } = this.state;
+    const { errorMessage } = this.state;
 
     const authorized = isAuthorized();
     if (authorized) {
@@ -76,6 +72,7 @@ export default class Login extends React.Component {
               <p className="profile-name-card"/>
               <form className="login-form">
 
+                <span className="form-alert">{errorMessage}</span>
                 <input
                   onChange={(event) => {
                     this.setState({
@@ -87,7 +84,6 @@ export default class Login extends React.Component {
                   className="form-control"
                   placeholder="Email address"
                 />
-                <span className="form-alert">{alerts.email}</span>
 
                 <input
                   onChange={(event) => {
@@ -100,7 +96,6 @@ export default class Login extends React.Component {
                   className="form-control"
                   placeholder="Password"
                 />
-                <span className="form-alert">{alerts.password}</span>
 
                 <div className="checkbox">
                   <label

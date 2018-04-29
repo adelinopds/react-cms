@@ -1,4 +1,5 @@
 import validator from 'validator';
+import ValidationError from '../../errors/ValidationError';
 
 const required = value => (!value.toString().trim().length);
 
@@ -10,30 +11,19 @@ const minLt = (value, minLength) => (!value.toString().trim().length <= minLengt
 
 const loginValidator = (email, password, authError) => {
 
-  let emailStatus = true;
-  let passwordStatus = true;
-  const res = {
-    email: '',
-    password: ''
-  };
-  
-  if (required(email) && emailStatus) {
-    emailStatus = false;
-    res.email = 'email is required';
-  }
-  if (validEmail(email) && emailStatus) {
-    emailStatus = false;
-    res.email = 'email is not valid';
-  }
-  if (required(password) && passwordStatus) {
-    passwordStatus = false;
-    res.password = 'password is required';
+  if (required(email)) {
+    throw new ValidationError('email', 'is required');
   }
 
-  if (passwordStatus && emailStatus) {
-    return false;
+  if (validEmail(email)) {
+    throw new ValidationError('email', 'is not valid');
   }
-  return res;
+
+  if (required(password)) {
+    throw new ValidationError('password', 'is required');
+  }
+
+  return true;
 };
 
 export default loginValidator;

@@ -33,7 +33,7 @@
     }
 
     .login-form {
-
+      
       .custom-color {
         background-color: $dark-grey;
       }
@@ -46,6 +46,7 @@
         direction: ltr;
         height: 44px;
         font-size: 16px;
+        margin-bottom: 15px;
       }
 
       input[type=email],
