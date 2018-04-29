@@ -1,7 +1,8 @@
-import { SET_FILTER } from '../constants/postContants';
+import { SET_FILTER, TOGGLE_FILTERS_COMPONENT } from '../constants/postContants';
 
 const initialState = {
   posts: [],
+  showFilters: false,
   filters: {
     keyword: '',
     authors: [],
@@ -56,6 +57,11 @@ export default (state = initialState, action) => {
         filters
       };
 
+    case TOGGLE_FILTERS_COMPONENT:
+      return {
+        ...state,
+        showFilters: !state.showFilters
+      };
     default:
       return state;
   }

@@ -1,2 +1,2 @@
 export const SET_FILTER = 'SET_FILTER';
-export const TEST = 'TEST';
+export const TOGGLE_FILTERS_COMPONENT = 'TOGGLE_FILTERS_COMPONENT';

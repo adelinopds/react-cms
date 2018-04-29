@@ -4,7 +4,7 @@ import {
   Row, Col, ButtonToolbar,
   Button, FormControl
 } from 'react-bootstrap';
-import { setSearchFilter as setPostSearchFilter } from '../../../actions/postActions';
+import { setSearchFilter as setPostSearchFilter, toggleFiltersComponent } from '../../../actions/postActions';
 
 @connect((store) => {
   return {
@@ -47,13 +47,16 @@ export default class PostListHeader extends React.Component {
               }}
             />
           </Col>
-          <Col md={2}>
+          <Col md={4}>
             <ButtonToolbar className="header-buttons">
               <Button bsStyle="danger" className="cms-button">Delete</Button>
-            </ButtonToolbar>
-          </Col>
-          <Col md={2}>
-            <ButtonToolbar className="header-buttons">
+              <Button
+                bsStyle="warning"
+                className="cms-button"
+                onClick={() => this.props.dispatch(toggleFiltersComponent())}
+              >
+                Show filters
+              </Button>
               <Button bsStyle="primary" className="cms-button">Add new</Button>
             </ButtonToolbar>
           </Col>

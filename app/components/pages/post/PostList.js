@@ -21,8 +21,6 @@ export default class PostList extends React.Component {
 
               <PostListFilters/>
 
-              <hr/>
-
               <div>
                 <Row>
                   <Col md={12}>

@@ -11,7 +11,8 @@ import SingleDateFilter from '../../filters/SingleDateFilter';
 
 @connect((store) => {
   return {
-    filters: store.post.filters
+    filters: store.post.filters,
+    showFilters: store.post.showFilters,
   };
 })
 export default class PostListFilters extends React.Component {
@@ -23,33 +24,35 @@ export default class PostListFilters extends React.Component {
 
   render = () => {
 
-    return (
+    if (this.props.showFilters) {
+      return (
+        <div>
+          <Row>
+            <Col md={4}>
+              <AuthorFilter
+                callback={(authors) => {
+                  this.props.dispatch(setPostSearchFilter({ authors }));
+                }}
+              />
+            </Col>
+            <Col md={4}>
+              <CategoryFilter
+                callback={(categories) => {
+                  this.props.dispatch(setPostSearchFilter({ categories }));
+                }}
+              />
+            </Col>
 
-      <div>
-        <Row>
-          <Col md={4}>
-            <AuthorFilter
-              callback={(authors) => {
-                this.props.dispatch(setPostSearchFilter({ authors }));
-              }}
-            />
-          </Col>
-          <Col md={4}>
-            <CategoryFilter
-              callback={(categories) => {
-                this.props.dispatch(setPostSearchFilter({ categories }));
-              }}
-            />
-          </Col>
-
-          <Col md={4}>
-            <SingleDateFilter callback={(createdDate) => {
-              this.props.dispatch(setPostSearchFilter({ createdDate }));
-            }}/>
-          </Col>
-        </Row>
-      </div>
-
-    );
+            <Col md={4}>
+              <SingleDateFilter callback={(createdDate) => {
+                this.props.dispatch(setPostSearchFilter({ createdDate }));
+              }}/>
+            </Col>
+          </Row>
+          <hr/>
+        </div>
+      );
+    }
+    return null;
   };
 }
