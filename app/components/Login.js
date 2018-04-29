@@ -28,6 +28,14 @@ export default class Login extends React.Component {
     window.addEventListener('resize', this.heightCalc);
   };
 
+  componentWillReceiveProps = (nextProps) => {
+    if (nextProps.authError !== this.props.authError) {
+      this.setState({
+        errorMessage: `(API) ${nextProps.authError}`
+      });
+    }
+  };
+
   componentWillUnmount = () => {
     window.removeEventListener('resize', this.heightCalc);
   };
@@ -44,7 +52,7 @@ export default class Login extends React.Component {
 
     const { email, password } = this.state;
     try {
-      loginValidator(email, password, this.props.authError);
+      loginValidator(email, password);
       this.props.dispatch(loginUser({
         email,
         password

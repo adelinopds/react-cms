@@ -1,5 +1,5 @@
 import { LOGOUT } from '../constants/constants';
-import { AUTHORIZED, LOGIN_REQUEST } from '../constants/userConstants';
+import { LOGIN_REQUEST } from '../constants/userConstants';
 
 const initialState = {
   user: {
@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
         ...state,
         fetching: true
       };
-    case LOGIN_REQUEST.ERROR:
+    case LOGIN_REQUEST.REJECTED:
       return {
         ...state,
         fetching: false,

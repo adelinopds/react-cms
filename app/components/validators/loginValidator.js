@@ -9,7 +9,7 @@ const maxLt = (value, maxLength) => (!value.toString().trim().length > maxLength
 
 const minLt = (value, minLength) => (!value.toString().trim().length <= minLength);
 
-const loginValidator = (email, password, authError) => {
+const loginValidator = (email, password) => {
 
   if (required(email)) {
     throw new ValidationError('email', 'is required');
