@@ -1,38 +1,38 @@
 import React from 'react';
 import Select from 'react-select';
 
-export default class AuthorFilter extends React.Component {
+export default class CategoryFilter extends React.Component {
 
   static defaultProps = {
-    authors: [
+    categories: [
       {
         id: 1,
-        name: 'Paul'
+        name: 'Classic'
       },
       {
         id: 2,
-        name: 'John'
+        name: 'Popular'
       },
       {
         id: 3,
-        name: 'Aria'
+        name: 'Tech'
       },
     ]
   };
 
   state = {
-    authors: [],
+    categories: [],
     loading: true
   };
 
   componentDidMount = () => {
-    this.getAuthors();
+    this.getCategories();
   };
 
-  getAuthors = () => {
+  getCategories = () => {
     setTimeout(() => {
       this.setState({
-        authors: this.props.authors,
+        categories: this.props.categories,
         loading: false
       });
     }, 500);
@@ -43,7 +43,7 @@ export default class AuthorFilter extends React.Component {
       <div>
 
         <Select
-          placeholder="Select authors"
+          placeholder="Select categories"
           isMulti
           isClearable
           getOptionLabel={option => option.name}
@@ -52,7 +52,7 @@ export default class AuthorFilter extends React.Component {
           isLoading={this.state.loading}
           onChange={value => this.props.callback(value)}
           name="author"
-          options={this.state.authors}
+          options={this.state.categories}
         />
 
       </div>

@@ -1,2 +1,2 @@
-export const SET_SINGLE_FILTER = 'SET_SINGLE_FILTER';
+export const SET_FILTER = 'SET_FILTER';
 export const TEST = 'TEST';

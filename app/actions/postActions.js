@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { SET_SINGLE_FILTER } from '../constants/postContants';
+import { SET_FILTER } from '../constants/postContants';
 
-export const setSingleFilter = (filter) => {
+export const setSearchFilter = (filter) => {
   return {
-    type: SET_SINGLE_FILTER,
+    type: SET_FILTER,
     payload: filter
   };
 };

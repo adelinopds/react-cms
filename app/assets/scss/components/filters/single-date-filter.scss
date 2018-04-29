@@ -1,0 +1,30 @@
+.cms-date-picker-wrapper {
+  .cms-date-picker {
+    position: relative;
+    > input {
+      flex: 1;
+      width: 100%;
+      padding: 6px 8px;
+      border: 1px solid $border-grey;
+      border-radius: 5px;
+      &:focus {
+        border-color: $border-color;
+      }
+    }
+
+    .cms-overlay-wrapper {
+      position: absolute;
+      top: 45px;
+      background-color: white;
+      border: 1px solid $border-grey;
+      border-radius: 5px;
+      width: 100%;
+      z-index: 999999;
+    }
+    .cms-overlay {
+      width: 100%;
+      display: block;
+    }
+  }
+}
+

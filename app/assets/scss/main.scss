@@ -3,18 +3,25 @@
 
 @import "~bootstrap/scss/bootstrap";
 
+/* Configuration & functions */
 @import "base/colors";
 @import "base/base";
 @import "mixin/general-classes";
 
 @import "elements/checkbox";
 
+/* Root components */
 @import "components/root";
 @import "components/menu";
 @import "components/login";
 @import "components/signUp";
 
+/* Filters */
+@import "components/filters/single-date-filter";
+
+/* Elements */
 @import "components/header";
 
+/* Pages */
 @import "components/post/post-list";
 @import "components/post/post-form";

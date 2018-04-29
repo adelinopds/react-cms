@@ -159,6 +159,10 @@ acorn@^5.3.0, acorn@^5.5.0:
   version "5.5.3"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.5.3.tgz#f473dd47e0277a08e28e9bec5aeeb04751f0b8c9"
 
+add@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/add/-/add-2.0.6.tgz#248f0a9f6e5a528ef2295dbeec30532130ae2235"
+
 ajv-keywords@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-2.1.1.tgz#617997fc5f60576894c435f940d819e135b80762"
@@ -5480,6 +5484,10 @@ mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdi
   dependencies:
     minimist "0.0.8"
 
+moment@^2.22.1:
+  version "2.22.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.1.tgz#529a2e9bf973f259c9643d237fda84de3a26e8ad"
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -6195,7 +6203,7 @@ pn@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
 
-popper.js@^1.12.9, popper.js@^1.14.3:
+popper.js@^1.12.9, popper.js@^1.14.1, popper.js@^1.14.3:
   version "1.14.3"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.14.3.tgz#1438f98d046acf7b4d78cd502bf418ac64d4f095"
 
@@ -6720,6 +6728,21 @@ react-burger-menu@^2.4.2:
     prop-types "^15.6.1"
     snapsvg-cjs "0.0.6"
 
+react-datepicker@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-1.4.1.tgz#ee171b71d9853e56f9eece5fc3186402f4648683"
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.0"
+    react-onclickoutside "^6.7.1"
+    react-popper "^0.9.1"
+
+react-day-picker@^7.1.6:
+  version "7.1.6"
+  resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-7.1.6.tgz#b7e99c2c4a66192f6a0b205accaad9e61c80c9ef"
+  dependencies:
+    prop-types "^15.6.1"
+
 react-deep-force-update@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-1.0.1.tgz#f911b5be1d2a6fe387507dd6e9a767aa2924b4c7"
@@ -6753,6 +6776,10 @@ react-is@^16.3.1:
   version "16.3.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.3.1.tgz#ee66e6d8283224a83b3030e110056798488359ba"
 
+react-onclickoutside@^6.7.1:
+  version "6.7.1"
+  resolved "https://registry.yarnpkg.com/react-onclickoutside/-/react-onclickoutside-6.7.1.tgz#6a5b5b8b4eae6b776259712c89c8a2b36b17be93"
+
 react-overlays@^0.8.0:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/react-overlays/-/react-overlays-0.8.3.tgz#fad65eea5b24301cca192a169f5dddb0b20d3ac5"
@@ -6770,6 +6797,13 @@ react-popper@^0.8.3:
   dependencies:
     popper.js "^1.12.9"
     prop-types "^15.6.0"
+
+react-popper@^0.9.1:
+  version "0.9.5"
+  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.9.5.tgz#02a24ef3eec33af9e54e8358ab70eb0e331edd05"
+  dependencies:
+    popper.js "^1.14.1"
+    prop-types "^15.6.1"
 
 react-portal@^4.1.2:
   version "4.1.5"
@@ -8789,3 +8823,7 @@ yargs@~3.10.0:
     cliui "^2.1.0"
     decamelize "^1.0.0"
     window-size "0.1.0"
+
+yarn@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.6.0.tgz#9cec6f7986dc237d39ec705ce74d95155fe55d4b"

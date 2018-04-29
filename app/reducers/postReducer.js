@@ -1,4 +1,4 @@
-import { SET_SINGLE_FILTER } from '../constants/postContants';
+import { SET_FILTER } from '../constants/postContants';
 
 const initialState = {
   posts: [],
@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
 
   switch (action.type) {
 
-    case SET_SINGLE_FILTER:
+    case SET_FILTER:
 
       if (action.payload.keyword) {
         filters = {
