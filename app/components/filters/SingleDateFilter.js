@@ -7,11 +7,12 @@ export default class SingleDateFilter extends React.Component {
 
   static defaultProps = {
     format: 'DD-MM-YYYY',
-    selected: moment().format('DD-MM-YYYY')
+    selected: moment()
   };
 
   render = () => {
 
+    const startDate = moment(this.props.selected).format(this.props.format);
     return (
       <div className="cms-date-picker-wrapper">
         <DayPickerInput
@@ -23,7 +24,10 @@ export default class SingleDateFilter extends React.Component {
           formatDate={date => moment(date).format(this.props.format)}
           format={this.props.format}
           placeholder={`format: ${this.props.format}`}
-          value={this.props.selected}
+          value={startDate}
+          onDayChange={(date) => {
+            this.props.callback(date);
+          }}
         />
       </div>
     );

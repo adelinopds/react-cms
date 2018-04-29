@@ -6,8 +6,7 @@ const initialState = {
     keyword: '',
     authors: [],
     categories: [],
-    startDate: '',
-    endDate: '',
+    createdDate: '',
   }
 };
 
@@ -39,16 +38,11 @@ export default (state = initialState, action) => {
           categories: action.payload.categories
         };
       }
-      if (action.payload.startDate) {
+
+      if (action.payload.createdDate) {
         filters = {
           ...state.filters,
-          startDate: action.payload.startDate
-        };
-      }
-      if (action.payload.endDate) {
-        filters = {
-          ...state.filters,
-          endDate: action.payload.endDate
+          createdDate: action.payload.createdDate
         };
       }
 

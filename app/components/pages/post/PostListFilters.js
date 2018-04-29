@@ -43,7 +43,9 @@ export default class PostListFilters extends React.Component {
           </Col>
 
           <Col md={4}>
-            <SingleDateFilter />
+            <SingleDateFilter callback={(createdDate) => {
+              this.props.dispatch(setPostSearchFilter({ createdDate }));
+            }}/>
           </Col>
         </Row>
       </div>
