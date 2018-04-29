@@ -7,16 +7,16 @@ export default class AuthorFilter extends React.Component {
     keyword: '',
     authors: [
       {
-        value: 1,
-        label: 'Paul'
+        id: 1,
+        name: 'Paul'
       },
       {
-        value: 2,
-        label: 'John'
+        id: 2,
+        name: 'John'
       },
       {
-        value: 3,
-        label: 'Aria'
+        id: 3,
+        name: 'Aria'
       },
     ]
   };
@@ -47,14 +47,13 @@ export default class AuthorFilter extends React.Component {
 
         <Select
           isMulti
-          defaultValue={this.state.authors[0]}
           isClearable
+          getOptionLabel={option => option.name}
+          getOptionValue={option => option.id}
           isSearchable
           isLoading={this.state.loading}
-          inputValue={inputValue}
-          onInputChange={inVal => this.setState({ inputValue: inVal })}
           onChange={value => this.props.callback(value)}
-          name="color"
+          name="author"
           options={this.state.authors}
           menuIsOpen={menuIsOpen}
         />
