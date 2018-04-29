@@ -18,10 +18,15 @@ export default (state = initialState, action) => {
 
     case SET_FILTER:
 
-      if (action.payload.keyword) {
+      if (action.payload.keyword && action.payload.keyword !== '') {
         filters = {
           ...state.filters,
           keyword: action.payload.keyword
+        };
+      } else {
+        filters = {
+          ...state.filters,
+          keyword: ''
         };
       }
 

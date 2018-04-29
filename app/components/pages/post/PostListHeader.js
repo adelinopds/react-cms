@@ -1,10 +1,29 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   Row, Col, ButtonToolbar,
   Button, FormControl
 } from 'react-bootstrap';
+import { setSearchFilter as setPostSearchFilter } from '../../../actions/postActions';
 
+@connect((store) => {
+  return {
+    filters: store.post.filters
+  };
+})
 export default class PostListHeader extends React.Component {
+
+  state = {
+    keyword: ''
+  };
+
+  componentWillReceiveProps = (nextProps) => {
+    if (nextProps.filters.keyword !== this.props.filters.keyword) {
+      this.setState({
+        keyword: nextProps.filters.keyword
+      });
+    }
+  };
 
   render = () => {
 
@@ -19,9 +38,12 @@ export default class PostListHeader extends React.Component {
           <Col md={4}>
             <FormControl
               type="text"
-              value={this.props.keyword}
-              placeholder="Search ..."
-              onChange={() => {
+              value={this.state.keyword}
+              placeholder="Search by title"
+              onChange={(element) => {
+                this.props.dispatch(setPostSearchFilter({
+                  keyword: element.target.value
+                }));
               }}
             />
           </Col>
