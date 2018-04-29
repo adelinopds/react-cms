@@ -4,10 +4,11 @@ import React from 'react';
 import User from '../components/pages/User';
 import ContactPage from '../components/pages/Contact';
 import HomePage from '../components/pages/Home';
-import Post from '../components/pages/Post';
 import Login from '../components/Login';
 import SignUp from '../components/SignUp';
 import isAuthorized from '../helpers/isAuthorized';
+import PostList from '../components/pages/post/PostList';
+import PostForm from '../components/pages/post/PostForm';
 
 const AuthenticatedRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -34,7 +35,9 @@ const Routes = () => {
       <AuthenticatedRoute path="/" component={HomePage} exact/>
       <Route path="/login" component={Login}/>
       <Route path="/sign-up" component={SignUp}/>
-      <AuthenticatedRoute path="/post" component={Post}/>
+      <AuthenticatedRoute path="/post" component={PostList}/>
+      <AuthenticatedRoute path="/post/edit" component={PostForm}/>
+      <AuthenticatedRoute path="/post/add" component={PostForm}/>
       <AuthenticatedRoute path="/user" component={User}/>
       <AuthenticatedRoute path="/contact" component={ContactPage}/>
       <Redirect from="*" to="/"/>

@@ -10,7 +10,11 @@
 @import "elements/checkbox";
 
 @import "components/root";
-@import "components/home-page";
 @import "components/menu";
 @import "components/login";
 @import "components/signUp";
+
+@import "components/header";
+
+@import "components/post/post-list";
+@import "components/post/post-form";

@@ -1,3 +1,5 @@
+export const LOGOUT = 'LOGOUT';
+
 export const LOGIN_REQUEST = {
   BASE: 'LOGIN_REQUEST',
   REJECTED: 'LOGIN_REQUEST_REJECTED',

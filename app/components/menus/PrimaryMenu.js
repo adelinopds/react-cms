@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { slide as Menu } from 'react-burger-menu';
 import Logo from '../partials/Logo';
-import { logoutUser } from '../../actions/userAction';
+import { logoutUser } from '../../actions/userActions';
 import isAuthorized from '../../helpers/isAuthorized';
 
 const LinkWrapper = styled.div.attrs({ className: 'menu-custom__menu-link' })``;

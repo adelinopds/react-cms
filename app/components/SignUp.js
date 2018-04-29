@@ -4,7 +4,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import { Button } from 'reactstrap';
 import styled from 'styled-components';
 import { Link, Redirect } from 'react-router-dom';
-import { loginUser } from '../actions/userAction';
+import { loginUser } from '../actions/userActions';
 import isAuthorized from '../helpers/isAuthorized';
 
 const SignUpContiner = styled.div``;

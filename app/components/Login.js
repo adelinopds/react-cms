@@ -3,7 +3,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
-import { loginUser } from '../actions/userAction';
+import { loginUser } from '../actions/userActions';
 import isAuthorized from '../helpers/isAuthorized';
 import loginValidator from './validators/loginValidator';
 

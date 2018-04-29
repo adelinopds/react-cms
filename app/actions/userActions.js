@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-import { LOGOUT } from '../constants/constants';
-import { LOGIN_REQUEST } from '../constants/userConstants';
+import { LOGIN_REQUEST, LOGOUT } from '../constants/userConstants';
 
 export const loginUser = user => ({
   type: LOGIN_REQUEST.BASE,
