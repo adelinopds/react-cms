@@ -107,7 +107,7 @@ export default class Login extends React.Component {
                 <div className="checkbox">
                   <label
                     htmlFor="js-login-checkbox"
-                    className="custom-control custom-control--checkbox js-contact-list__control-checkbox"
+                    className="custom-control custom-control--checkbox"
                   >
                     <input
                       id="js-login-checkbox"

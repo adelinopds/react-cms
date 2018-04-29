@@ -15,7 +15,7 @@ import SingleDateFilter from '../../filters/SingleDateFilter';
     showFilters: store.post.showFilters,
   };
 })
-export default class PostListFilters extends React.Component {
+export default class PostFilters extends React.Component {
 
   static defaultProps = {
     keyword: '',
@@ -26,7 +26,8 @@ export default class PostListFilters extends React.Component {
 
     if (this.props.showFilters) {
       return (
-        <div>
+        <div className="cms-filters">
+          <hr/>
           <Row>
             <Col md={4}>
               <AuthorFilter
@@ -49,7 +50,6 @@ export default class PostListFilters extends React.Component {
               }}/>
             </Col>
           </Row>
-          <hr/>
         </div>
       );
     }

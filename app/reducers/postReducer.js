@@ -1,6 +1,8 @@
-import { SET_FILTER, TOGGLE_FILTERS_COMPONENT } from '../constants/postContants';
+import { SET_FILTER, SET_POSTS_DATA, SET_SELECTED_POSTS, TOGGLE_FILTERS_COMPONENT } from '../constants/postContants';
 
 const initialState = {
+  selectAll: false,
+  selectedPosts: [],
   posts: [],
   showFilters: false,
   filters: {
@@ -61,6 +63,19 @@ export default (state = initialState, action) => {
       return {
         ...state,
         showFilters: !state.showFilters
+      };
+
+    case SET_SELECTED_POSTS:
+      return {
+        ...state,
+        selectedPosts: action.payload.posts,
+        selectAll: action.payload.selectAll
+      };
+
+    case SET_POSTS_DATA:
+      return {
+        ...state,
+        posts: action.payload
       };
     default:
       return state;

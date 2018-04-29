@@ -1,0 +1,32 @@
+/* Header */
+
+.cms-header {
+  margin: 30px 0 30px;
+
+  .header-buttons {
+    justify-content: space-between;
+  }
+
+  .cms-button {
+    margin: 0 5px;
+    display: flex;
+  }
+}
+
+
+/* Filters */
+
+.cms-filters {
+  margin-bottom: 15px;
+}
+
+
+/* List */
+.cms-edit-button.btn-default {
+  border-color: $border-grey;
+  color: $grey;
+
+  &:hover {
+    background-color: $border-grey;
+  }
+}

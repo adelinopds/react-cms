@@ -7,7 +7,7 @@ import HomePage from '../components/pages/Home';
 import Login from '../components/Login';
 import SignUp from '../components/SignUp';
 import isAuthorized from '../helpers/isAuthorized';
-import PostList from '../components/pages/post/PostList';
+import PostIndex from '../components/pages/post/PostIndex';
 import PostForm from '../components/pages/post/PostForm';
 
 const AuthenticatedRoute = ({ component: Component, ...rest }) => (
@@ -35,7 +35,7 @@ const Routes = () => {
       <AuthenticatedRoute path="/" component={HomePage} exact/>
       <Route path="/login" component={Login}/>
       <Route path="/sign-up" component={SignUp}/>
-      <AuthenticatedRoute path="/post" component={PostList}/>
+      <AuthenticatedRoute path="/post" component={PostIndex}/>
       <AuthenticatedRoute path="/post/edit" component={PostForm}/>
       <AuthenticatedRoute path="/post/add" component={PostForm}/>
       <AuthenticatedRoute path="/user" component={User}/>

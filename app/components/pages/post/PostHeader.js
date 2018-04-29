@@ -11,7 +11,7 @@ import { setSearchFilter as setPostSearchFilter, toggleFiltersComponent } from '
     filters: store.post.filters
   };
 })
-export default class PostListHeader extends React.Component {
+export default class PostHeader extends React.Component {
 
   state = {
     keyword: ''
