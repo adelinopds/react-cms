@@ -1,4 +1,7 @@
-import { SET_FILTER, SET_POSTS_DATA, SET_SELECTED_POSTS, TOGGLE_FILTERS_COMPONENT } from '../constants/postContants';
+import {
+  SET_FILTER, GET_POSTS, SET_SELECTED_POSTS, TOGGLE_FILTERS_COMPONENT,
+  DELETE_POSTS, RESET_FETCHING_SETTINGS
+} from '../constants/postContants';
 
 const initialState = {
   selectAll: false,
@@ -10,7 +13,8 @@ const initialState = {
     authors: [],
     categories: [],
     createdDate: '',
-  }
+  },
+  deleted: false
 };
 
 export default (state = initialState, action) => {
@@ -72,10 +76,25 @@ export default (state = initialState, action) => {
         selectAll: action.payload.selectAll
       };
 
-    case SET_POSTS_DATA:
+    case GET_POSTS:
       return {
         ...state,
         posts: action.payload
+      };
+
+    case DELETE_POSTS:
+      return {
+        ...state,
+        posts: action.payload,
+        deleted: true
+      };
+
+    // TODO : will be remove replaced by redux-promise()
+    case RESET_FETCHING_SETTINGS:
+      return {
+        ...state,
+        selectedPosts: [],
+        deleted: false
       };
     default:
       return state;

@@ -30,3 +30,28 @@
     background-color: $border-grey;
   }
 }
+
+/* Sweet Alert Custom CSS */
+.swal2-container {
+  .swal2-actions {
+    .swal2-confirm {
+
+    }
+  }
+}
+
+.swal2-popup {
+  .swal2-styled {
+    background-color: $primary-blue !important;
+    border-left-color: $primary-blue !important;
+    border-right-color: $primary-blue !important;
+    &:focus {
+      box-shadow: 0 0 0 0px #fff, 0 0 0 2px rgba(50, 100, 150, 0.4) !important;
+    }
+    &:hover {
+      color: #fff;
+      background-color: $primary-hover-blue;
+      border-color: $primary-hover-blue;
+    }
+  }
+}

@@ -6,13 +6,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { Row, Col, Table, Button } from 'react-bootstrap';
-import { posts as blogData } from '../../../helpers/cmsCustomData';
-import { setPostsData, setSelectedPosts } from '../../../actions/postActions';
+import { getPosts, resetFetchingSettings, setSelectedPosts } from '../../../actions/postActions';
 
 @connect((store) => {
   return {
     filters: store.post.filters,
     posts: store.post.posts,
+    deleted: store.post.deleted,
     selectAll: store.post.selectAll,
     selectedPosts: store.post.selectedPosts,
   };
@@ -25,12 +25,27 @@ export default class PostList extends React.Component {
   };
 
   componentDidMount = () => {
-    this.props.dispatch(setPostsData(blogData));
+    this.props.dispatch(getPosts());
+  };
+
+  componentWillUpdate = (nextProps) => {
+
+    if (nextProps.deleted) {
+      const node = document.getElementById('js-post-list-table');
+      const elements = node.querySelectorAll('.js-select-post');
+      elements.forEach((element) => {
+        if (element.checked === true) {
+          element.checked = false;
+        }
+      });
+
+      this.props.dispatch(resetFetchingSettings());
+    }
   };
 
   componentillReceiveProps = (nextProps) => {
-    if (nextProps.selectAll !== this.props.selectAll) {
-      console.log('SOMETHING');
+    if (nextProps.filters !== this.props.filters) {
+      this.props.dispatch(getPosts(nextProps.filters));
     }
   };
 
@@ -56,16 +71,7 @@ export default class PostList extends React.Component {
     }
   };
 
-  selectSingleRecord = (el, post) => {
-
-    const element = document.getElementById(el.id);
-
-    if (element.checked === true) {
-      element.checked = false;
-    } else if (element.disabled === false) {
-      element.checked = true;
-    }
-    console.log(element.target, 'element');
+  selectSingleRecord = (post) => {
 
     const found = _.find(this.props.selectedPosts, { id: post.id });
     let modified;
@@ -123,8 +129,8 @@ export default class PostList extends React.Component {
                 className="js-select-post"
                 id={`js-select-post-${index}-checkbox`}
                 type="checkbox"
-                onChange={(element) => {
-                  this.selectSingleRecord(element, post);
+                onChange={() => {
+                  this.selectSingleRecord(post);
                 }}
               />
               <div className="custom-control__indicator"/>

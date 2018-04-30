@@ -1,10 +1,12 @@
 import axios from 'axios';
+import _ from 'lodash';
 import {
   SET_FILTER,
-  SET_POSTS_DATA,
+  GET_POSTS,
   SET_SELECTED_POSTS,
-  TOGGLE_FILTERS_COMPONENT
+  TOGGLE_FILTERS_COMPONENT, DELETE_POSTS, RESET_FETCHING_SETTINGS
 } from '../constants/postContants';
+import { posts as blogData } from '../helpers/cmsCustomData';
 
 export const setSearchFilter = (filter) => {
   return {
@@ -31,8 +33,36 @@ export const setSelectedPosts = (posts, selectAll) => {
   };
 };
 
+export const getPosts = (filters) => {
 
-export const setPostsData = posts => ({
-  type: SET_POSTS_DATA,
-  payload: posts
-});
+  if (filters) {
+    // get variables by filter. TODO on API site
+  }
+  const posts = blogData;
+  return {
+    type: GET_POSTS,
+    payload: posts
+  };
+};
+
+export const deletePosts = (selected, all) => {
+
+  const ids = selected.map(item => item.id);
+  const posts = _.filter(all, (post) => {
+    if (!_.find(ids, id => post.id === id)) {
+      return post;
+    }
+    return null;
+  });
+
+  return {
+    type: DELETE_POSTS,
+    payload: posts
+  };
+};
+
+export const resetFetchingSettings = () => {
+  return {
+    type: RESET_FETCHING_SETTINGS
+  };
+};
