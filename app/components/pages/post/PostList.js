@@ -41,28 +41,31 @@ export default class PostList extends React.Component {
 
     if (this.props.selectAll) {
       elements.forEach((element) => {
-        if (element.disabled === false) {
-          element.checked = true;
+        if (element.checked === true) {
+          element.checked = false;
         }
       });
       this.props.dispatch(setSelectedPosts([], false));
     } else {
       elements.forEach((element) => {
-        if (element.checked === true) {
-          element.checked = false;
+        if (element.disabled === false) {
+          element.checked = true;
         }
       });
       this.props.dispatch(setSelectedPosts(this.props.posts, true));
     }
   };
 
-  selectSingleRecord = (element, post) => {
-    console.log(element, 'element');
-    if (element.target.checked === true) {
-      element.target.checked = false;
+  selectSingleRecord = (el, post) => {
+
+    const element = document.getElementById(el.id);
+
+    if (element.checked === true) {
+      element.checked = false;
     } else if (element.disabled === false) {
-      element.target.checked = true;
+      element.checked = true;
     }
+    console.log(element.target, 'element');
 
     const found = _.find(this.props.selectedPosts, { id: post.id });
     let modified;
@@ -123,7 +126,6 @@ export default class PostList extends React.Component {
                 onChange={(element) => {
                   this.selectSingleRecord(element, post);
                 }}
-                checked={this.props.selectAll ? 'checked' : ''}
               />
               <div className="custom-control__indicator"/>
             </label>
