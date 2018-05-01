@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { LOGIN_REQUEST, LOGOUT } from '../constants/userConstants';
+import { FAKE_AUTORIZATION, LOGIN_REQUEST, LOGOUT } from '../constants/userConstants';
 
 export const loginUser = user => ({
   type: LOGIN_REQUEST.BASE,
@@ -12,4 +12,12 @@ export const loginUser = user => ({
 
 export const logoutUser = () => ({
   type: LOGOUT
+});
+
+export const fakeLoginUser = (username, password) => ({
+  type: FAKE_AUTORIZATION,
+  payload: {
+    username,
+    password
+  }
 });

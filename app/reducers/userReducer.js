@@ -1,4 +1,5 @@
 import {
+  FAKE_AUTORIZATION,
   LOGIN_REQUEST,
   LOGOUT
 } from '../constants/userConstants';
@@ -52,6 +53,7 @@ export default (state = initialState, action) => {
         ...state,
         user: {}
       };
+      
     default:
       return state;
   }

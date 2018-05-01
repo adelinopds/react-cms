@@ -6,6 +6,8 @@ import { Link, Redirect } from 'react-router-dom';
 import { loginUser } from '../actions/userActions';
 import isAuthorized from '../helpers/isAuthorized';
 import loginValidator from './validators/loginValidator';
+import config from '../config';
+import fakeAuthorization from '../helpers/fakeAuthorization';
 
 @connect((store) => {
   return {
@@ -28,12 +30,18 @@ export default class Login extends React.Component {
     window.addEventListener('resize', this.heightCalc);
   };
 
-  componentWillReceiveProps = (nextProps) => {
+  shouldComponentUpdate = (nextProps, nextStates) => {
+    // TODO: Demo log in
+    if (config.DEMO) {
+      fakeAuthorization(this.state.email, this.state.password);
+    }
+
     if (nextProps.authError !== this.props.authError) {
       this.setState({
         errorMessage: `(API) ${nextProps.authError}`
       });
     }
+    return true;
   };
 
   componentWillUnmount = () => {

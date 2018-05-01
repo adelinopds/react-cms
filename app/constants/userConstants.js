@@ -1,4 +1,5 @@
 export const LOGOUT = 'LOGOUT';
+export const FAKE_AUTORIZATION = 'FAKE_AUTORIZATION';
 
 export const LOGIN_REQUEST = {
   BASE: 'LOGIN_REQUEST',

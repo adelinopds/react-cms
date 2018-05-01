@@ -12,7 +12,7 @@ import '../assets/scss/main.scss';
 export const store = configureStore();
 
 const MainWrapper = styled.div.attrs({ className: 'main-wrapper' })``;
-const PageWrapper = styled.div.attrs({ className: 'page-wrapper' })``;
+const ViewWrapper = styled.div.attrs({ className: 'page-wrapper' })``;
 
 const Root = () => {
 
@@ -20,10 +20,9 @@ const Root = () => {
     <Provider store={store}>
       <Router>
         <MainWrapper id="js-main-wrapper">
-          <PrimaryMenu />
-          <PageWrapper id="js-page-wrapper">
+          <ViewWrapper id="js-page-wrapper">
             <Routes />
-          </PageWrapper>
+          </ViewWrapper>
         </MainWrapper>
       </Router>
     </Provider>
