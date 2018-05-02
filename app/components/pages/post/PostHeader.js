@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   Row, Col, ButtonToolbar,
   Button, FormControl
@@ -153,7 +154,9 @@ export default class PostHeader extends React.Component {
               >
                 Show filters
               </Button>
-              <Button bsStyle="primary" className="cms-button">Add new</Button>
+              <Link to="/post/edit">
+                <Button bsStyle="primary" className="cms-button"/>
+              </Link>
             </ButtonToolbar>
           </Col>
         </Row>

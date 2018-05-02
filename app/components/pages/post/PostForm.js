@@ -1,10 +1,19 @@
 import React from 'react';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 export default class PostForm extends React.Component {
 
   render = () => {
+
     return (
-      <div>Post Form</div>
+      <Row>
+        <Col md={9}>
+          Form
+        </Col>
+        <Col md={3}>
+          Panel
+        </Col>
+      </Row>
     );
   };
 }
