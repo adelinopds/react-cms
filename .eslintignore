@@ -1,1 +1,3 @@
 tests
+app/actions/*
+app/constants/*
