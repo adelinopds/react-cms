@@ -38,6 +38,7 @@ export default class PostFilters extends React.Component {
             </Col>
             <Col md={4}>
               <CategoryFilter
+                multiSelect={true}
                 callback={(categories) => {
                   this.props.dispatch(setPostSearchFilter({ categories }));
                 }}

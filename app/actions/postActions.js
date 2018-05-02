@@ -3,10 +3,10 @@ import _ from 'lodash';
 import {
   SET_FILTER,
   GET_POSTS,
+  SET_POSTS_DEMO,
   SET_SELECTED_POSTS,
   TOGGLE_FILTERS_COMPONENT, DELETE_POSTS, RESET_FETCHING_SETTINGS
 } from '../constants/postContants';
-import { posts as blogData } from '../helpers/cmsCustomData';
 
 export const setSearchFilter = (filter) => {
   return {
@@ -38,10 +38,9 @@ export const getPosts = (filters) => {
   if (filters) {
     // get variables by filter. TODO on API site
   }
-  const posts = blogData;
   return {
     type: GET_POSTS,
-    payload: posts
+    payload: ''// axios.get('/posts');
   };
 };
 

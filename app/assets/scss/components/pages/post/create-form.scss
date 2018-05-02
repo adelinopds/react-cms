@@ -1,0 +1,21 @@
+.post-create-form {
+  .form-block {
+    margin-bottom: 15px;
+
+    > .p10 > div {
+      border-radius: 5px;
+    }
+  }
+  .main-panel {
+    .input-block {}
+    .editor-block {}
+  }
+  .side-panel {
+    .action-button {
+      display: flex;
+      .cms-button {
+        flex: 1 1;
+      }
+    }
+  }
+}

@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { Provider } from 'react-redux';
 import configureStore from '../store/configureStore';
 import Routes from './Routes';
-import PrimaryMenu from '../components/menus/PrimaryMenu';
 
 import '../assets/scss/main.scss';
 

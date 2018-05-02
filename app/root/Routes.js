@@ -8,8 +8,8 @@ import HomePage from '../components/pages/Home';
 import Login from '../components/Login';
 import SignUp from '../components/SignUp';
 import isAuthorized from '../helpers/isAuthorized';
-import PostIndex from '../components/pages/post/PostIndex';
-import PostForm from '../components/pages/post/PostForm';
+import PostIndex from '../components/pages/Post';
+import PostForm from '../components/pages/PostCreate';
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   return (
@@ -41,7 +41,7 @@ const Routes = () => {
       <ProtectedRoute path="/" component={HomePage} exact/>
 
       <ProtectedRoute path="/post" component={PostIndex} exact/>
-      <ProtectedRoute path="/post/edit" component={PostForm}/>
+      <ProtectedRoute path="/post/create" component={PostForm}/>
       <ProtectedRoute path="/post/add" component={PostForm}/>
 
       <ProtectedRoute path="/user" component={User}/>

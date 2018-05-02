@@ -1,28 +1,17 @@
 import React from 'react';
 import Select from 'react-select';
+import { categories as categoryData } from '../../helpers/cmsCustomData';
 
 export default class CategoryFilter extends React.Component {
 
   static defaultProps = {
-    categories: [
-      {
-        id: 1,
-        name: 'Classic'
-      },
-      {
-        id: 2,
-        name: 'Popular'
-      },
-      {
-        id: 3,
-        name: 'Tech'
-      },
-    ]
+    multiSelect: false,
+    placeholder: 'Select categories'
   };
 
   state = {
     categories: [],
-    loading: true
+    loading: true,
   };
 
   componentDidMount = () => {
@@ -32,7 +21,7 @@ export default class CategoryFilter extends React.Component {
   getCategories = () => {
     setTimeout(() => {
       this.setState({
-        categories: this.props.categories,
+        categories: categoryData,
         loading: false
       });
     }, 500);
@@ -43,8 +32,8 @@ export default class CategoryFilter extends React.Component {
       <div>
 
         <Select
-          placeholder="Select categories"
-          isMulti
+          placeholder={this.props.placeholder}
+          isMulti={this.props.multiSelect}
           isClearable
           getOptionLabel={option => option.name}
           getOptionValue={option => option.id}

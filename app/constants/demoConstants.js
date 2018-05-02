@@ -1,0 +1,2 @@
+export const SET_POSTS_DEMO = 'SET_POSTS_DEMO';
+export const CREATE_POST_DEMO = 'CREATE_POST_DEMO';

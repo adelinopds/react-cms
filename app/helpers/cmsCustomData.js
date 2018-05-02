@@ -12,9 +12,10 @@ export const posts = [
       role: 'admin'
     },
     categories: [
-      'top', 'selected'
+      { id: 1, name: 'Classic' },
+      { id: 2, name: 'Popular' },
     ],
-    createdAt: '04/29/2018 14:05:45'
+    createdAt: '2010-01-01T05:06:07'
   },
   {
     id: 2,
@@ -29,9 +30,10 @@ export const posts = [
       role: 'admin'
     },
     categories: [
-      'top', 'selected'
+      { id: 1, name: 'Classic' },
+      { id: 2, name: 'Popular' },
     ],
-    createdAt: '04/29/2018 14:05:45'
+    createdAt: '2010-01-01T05:06:07'
   },
   {
     id: 3,
@@ -46,9 +48,10 @@ export const posts = [
       role: 'admin'
     },
     categories: [
-      'top', 'selected'
+      { id: 1, name: 'Classic' },
+      { id: 2, name: 'Popular' },
     ],
-    createdAt: '04/29/2018 14:05:45'
+    createdAt: '2010-01-01T05:06:07'
   },
   {
     id: 4,
@@ -63,9 +66,10 @@ export const posts = [
       role: 'admin'
     },
     categories: [
-      'top', 'selected'
+      { id: 1, name: 'Classic' },
+      { id: 2, name: 'Popular' },
     ],
-    createdAt: '04/29/2018 14:05:45'
+    createdAt: '2010-01-01T05:06:07'
   },
   {
     id: 5,
@@ -80,9 +84,10 @@ export const posts = [
       role: 'admin'
     },
     categories: [
-      'top', 'selected'
+      { id: 1, name: 'Classic' },
+      { id: 2, name: 'Popular' },
     ],
-    createdAt: '04/29/2018 14:05:45'
+    createdAt: '2010-01-01T05:06:07'
   },
   {
     id: 6,
@@ -97,9 +102,10 @@ export const posts = [
       role: 'admin'
     },
     categories: [
-      'top', 'selected'
+      { id: 1, name: 'Classic' },
+      { id: 2, name: 'Popular' },
     ],
-    createdAt: '04/29/2018 14:05:45'
+    createdAt: '2010-01-01T05:06:07'
   },
   {
     id: 7,
@@ -114,9 +120,10 @@ export const posts = [
       role: 'admin'
     },
     categories: [
-      'top', 'selected'
+      { id: 1, name: 'Classic' },
+      { id: 2, name: 'Popular' },
     ],
-    createdAt: '04/29/2018 14:05:45'
+    createdAt: '2010-01-01T05:06:07'
   },
   {
     id: 8,
@@ -131,9 +138,9 @@ export const posts = [
       role: 'admin'
     },
     categories: [
-      'top', 'selected'
+      { id: 1, name: 'Classic' },
     ],
-    createdAt: '04/29/2018 14:05:45'
+    createdAt: '2010-01-01T05:06:07'
   },
   {
     id: 9,
@@ -148,10 +155,24 @@ export const posts = [
       role: 'admin'
     },
     categories: [
-      'top', 'selected'
+      { id: 1, name: 'Classic' },
+      { id: 2, name: 'Popular' },
     ],
-    createdAt: '04/29/2018 14:05:45'
+    createdAt: '2010-01-01T05:06:07'
   },
 ];
 
-export const ESLINT = 'ESLINT';
+export const categories = [
+  {
+    id: 1,
+    name: 'Classic'
+  },
+  {
+    id: 2,
+    name: 'Popular'
+  },
+  {
+    id: 3,
+    name: 'Tech'
+  },
+];

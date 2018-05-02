@@ -1,6 +1,6 @@
 import {
   SET_FILTER, GET_POSTS, SET_SELECTED_POSTS, TOGGLE_FILTERS_COMPONENT,
-  DELETE_POSTS, RESET_FETCHING_SETTINGS
+  DELETE_POSTS, RESET_FETCHING_SETTINGS, SET_POSTS_DEMO
 } from '../constants/postContants';
 
 const initialState = {
@@ -77,6 +77,12 @@ export default (state = initialState, action) => {
       };
 
     case GET_POSTS:
+      return {
+        ...state,
+        posts: action.payload
+      };
+
+    case SET_POSTS_DEMO:
       return {
         ...state,
         posts: action.payload

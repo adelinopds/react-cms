@@ -1,7 +1,17 @@
+/* Globals */
+
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+
 /* Header */
 
 .cms-header {
-  margin: 30px 0 30px;
+  padding: 30px 0 30px;
 
   .header-buttons {
     justify-content: space-between;

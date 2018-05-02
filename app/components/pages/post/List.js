@@ -7,14 +7,17 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import { Row, Col, Table, Button } from 'react-bootstrap';
 import { getPosts, resetFetchingSettings, setSelectedPosts } from '../../../actions/postActions';
+import config from '../../../config';
+import { setPostsDemo } from '../../../actions/demoActions';
 
 @connect((store) => {
   return {
     filters: store.post.filters,
-    posts: store.post.posts,
     deleted: store.post.deleted,
     selectAll: store.post.selectAll,
     selectedPosts: store.post.selectedPosts,
+    posts: store.demo.posts,
+    postsLoaded: store.demo.postsLoaded
   };
 })
 export default class PostList extends React.Component {
@@ -25,7 +28,9 @@ export default class PostList extends React.Component {
   };
 
   componentDidMount = () => {
-    this.props.dispatch(getPosts());
+    if (config.DEMO && !this.props.postsLoaded) {
+      this.props.dispatch(setPostsDemo());
+    }
   };
 
   componentWillUpdate = (nextProps) => {
@@ -45,7 +50,9 @@ export default class PostList extends React.Component {
 
   componentillReceiveProps = (nextProps) => {
     if (nextProps.filters !== this.props.filters) {
-      this.props.dispatch(getPosts(nextProps.filters));
+      if (!config.DEMO) {
+        this.props.dispatch(getPosts(nextProps.filters));
+      }
     }
   };
 
