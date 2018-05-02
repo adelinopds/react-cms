@@ -65,6 +65,7 @@
     "redux-promise-middleware": "^5.1.1",
     "styled-components": "^3.2.5",
     "sweetalert2-react": "^0.7.2",
+    "uuid": "^3.2.1",
     "validator": "^9.4.1",
     "yarn": "^1.6.0"
   },

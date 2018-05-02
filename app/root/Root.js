@@ -8,6 +8,7 @@ import Routes from './Routes';
 
 import '../assets/scss/main.scss';
 
+export const uuidv1 = require('uuid/v1');
 export const store = configureStore();
 
 const MainWrapper = styled.div.attrs({ className: 'main-wrapper' })``;

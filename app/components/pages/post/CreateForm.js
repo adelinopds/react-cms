@@ -6,6 +6,7 @@ import { Row, Col, FormControl, Button } from 'react-bootstrap';
 import CKEditor from 'react-ckeditor-component';
 import CategoryFilter from '../../filters/CategoryFilter';
 import { createPostDemo } from '../../../actions/demoActions';
+import { uuidv1 } from '../../../root/Root';
 
 @connect(store => ({ ...store }))
 @withRouter
@@ -18,7 +19,6 @@ export default class CreateForm extends React.Component {
   };
 
   onChange = (evt) => {
-    console.log('onChange fired with event info: ', evt);
     const newContent = evt.editor.getData();
     this.setState({
       content: newContent
@@ -34,7 +34,9 @@ export default class CreateForm extends React.Component {
   };
 
   save = () => {
+
     const post = {
+      id: uuidv1(),
       title: this.state.title,
       content: this.state.content,
       category: this.state.category,
@@ -45,9 +47,6 @@ export default class CreateForm extends React.Component {
       createdAt: moment().format(moment().ISO_8601)
     };
     this.props.dispatch(createPostDemo(post));
-
-    console.log(this.props);
-
     this.props.history.push('/post');
   };
 
