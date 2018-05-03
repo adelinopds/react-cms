@@ -1,15 +1,23 @@
 import React from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 import { Row, Col, FormControl, Button } from 'react-bootstrap';
 import CKEditor from 'react-ckeditor-component';
 import CategoryFilter from '../../filters/CategoryFilter';
-import { createPostDemo } from '../../../actions/demoActions';
+import { createPostDemo, updatePostsDemo } from '../../../actions/demoActions';
 import { uuidv1 } from '../../../root/Root';
-import { updatePostCategories, updatePostContent, updatePostTitle } from '../../../actions/models/postActions';
+import {
+  selectPost,
+  updatePostCategories,
+  updatePostContent,
+  updatePostTitle
+} from '../../../actions/models/postActions';
+import config from '../../../config';
 
 @connect(store => ({
+  posts: store.demo.posts,
   post: store.postModel.post,
 }))
 @withRouter
@@ -19,16 +27,33 @@ export default class CreateForm extends React.Component {
     editionMode: false,
   };
 
+  componentDidMount = () => {
+    const { dispatch } = this.props;
+    const postUuid = this.props.match.params.uuid;
+    if (postUuid) {
+      const post = _.find(this.props.posts, { uuid: parseInt(postUuid, 10) });
+      if (post) {
+        dispatch(selectPost(post));
+      }
+    }
+  };
+
   onChange = (evt) => {
     const newContent = evt.editor.getData();
     this.props.dispatch(updatePostContent(newContent));
   };
+
 
   save = () => {
 
     const {
       uuid, title, content, categories
     } = this.props.post;
+
+    if (uuid && uuid !== '' && config.DEMO) {
+      const posts = this.props.posts.filter(obj => obj.uuid !== uuid);
+      this.props.dispatch(updatePostsDemo(posts));
+    }
 
     const post = {
       uuid: (uuid && uuid !== '') ? uuid : uuidv1(),

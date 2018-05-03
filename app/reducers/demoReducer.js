@@ -1,4 +1,4 @@
-import { CREATE_POST_DEMO, SET_POSTS_DEMO } from '../constants/demoConstants';
+import { CREATE_POST_DEMO, SET_POSTS_DEMO, UPDATE_POSTS_DEMO } from '../constants/demoConstants';
 
 const initialState = {
   posts: [],
@@ -20,7 +20,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         posts: state.posts.concat(action.payload),
-        postsLoaded: true
+      };
+
+    case UPDATE_POSTS_DEMO:
+      return {
+        ...state,
+        posts: action.payload,
       };
 
     default:
