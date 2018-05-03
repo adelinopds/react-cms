@@ -8,7 +8,7 @@ import HomePage from '../components/pages/Home';
 import Login from '../components/Login';
 import SignUp from '../components/SignUp';
 import isAuthorized from '../helpers/isAuthorized';
-import PostIndex from '../components/pages/Post';
+import PostIndex from '../components/pages/PostList';
 import PostForm from '../components/pages/PostCreate';
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {

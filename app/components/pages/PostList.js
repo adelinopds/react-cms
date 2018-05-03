@@ -1,10 +1,10 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { PageWrapper } from '../../constants/constants';
-import Filters from './post/Filters';
-import List from './post/List';
+import Filters from './postList/ListFilters';
+import List from './postList/List';
 import PrimaryMenu from '../menus/PrimaryMenu';
-import ListHeader from './post/ListHeader';
+import ListHeader from './postList/ListHeader';
 
 export default class Post extends React.Component {
 
