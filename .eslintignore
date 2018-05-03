@@ -1,3 +1,4 @@
 tests
 app/actions/*
 app/constants/*
+app/models/*

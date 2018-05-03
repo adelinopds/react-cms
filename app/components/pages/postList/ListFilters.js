@@ -5,14 +5,14 @@ import {
   Col
 } from 'react-bootstrap';
 import AuthorFilter from '../../filters/AuthorFilter';
-import { setSearchFilter as setPostSearchFilter } from '../../../actions/postActions';
+import { setSearchFilter as setPostSearchFilter } from '../../../actions/pages/postActions';
 import CategoryFilter from '../../filters/CategoryFilter';
 import SingleDateFilter from '../../filters/SingleDateFilter';
 
 @connect((store) => {
   return {
-    filters: store.post.filters,
-    showFilters: store.post.showFilters,
+    filters: store.postPage.filters,
+    showFilters: store.postPage.showFilters,
   };
 })
 export default class PostFilters extends React.Component {

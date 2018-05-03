@@ -7,18 +7,18 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { Row, Col, Table, Button } from 'react-bootstrap';
-import { getPosts, resetFetchingSettings, setSelectedPosts } from '../../../actions/postActions';
+import { getPosts, resetFetchingSettings, setSelectedPosts } from '../../../actions/pages/postActions';
 import config from '../../../config';
 import { setPostsDemo } from '../../../actions/demoActions';
 
 @connect((store) => {
   return {
-    filters: store.post.filters,
-    deleted: store.post.deleted,
-    selectAll: store.post.selectAll,
-    selectedPosts: store.post.selectedPosts,
     posts: store.demo.posts,
-    postsLoaded: store.demo.postsLoaded
+    postsLoaded: store.demo.postsLoaded,
+    filters: store.postPage.filters,
+    deleted: store.postPage.deleted,
+    selectAll: store.postPage.selectAll,
+    selectedPosts: store.postPage.selectedPosts,
   };
 })
 export default class PostList extends React.Component {

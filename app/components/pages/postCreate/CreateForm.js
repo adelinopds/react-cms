@@ -7,39 +7,41 @@ import CKEditor from 'react-ckeditor-component';
 import CategoryFilter from '../../filters/CategoryFilter';
 import { createPostDemo } from '../../../actions/demoActions';
 import { uuidv1 } from '../../../root/Root';
+import { updatePostCategories, updatePostContent, updatePostTitle } from '../../../actions/models/postActions';
 
-@connect(store => ({ ...store }))
+@connect(store => ({
+  post: store.postModel.post,
+}))
 @withRouter
 export default class CreateForm extends React.Component {
 
+  static defaultProps = {
+    editionMode: false,
+  };
+
   state = {
-    title: '',
-    category: '',
-    content: 'content',
+    content: ''
   };
 
   onChange = (evt) => {
     const newContent = evt.editor.getData();
+    this.props.dispatch(updatePostContent(newContent));
     this.setState({
       content: newContent
     });
   };
 
-  onBlur = (evt) => {
-    console.log('onBlur event called with event info: ', evt);
-  };
-
-  afterPaste = (evt) => {
-    console.log('afterPaste event called with event info: ', evt);
-  };
-
   save = () => {
 
+    const {
+      uuid, title, content, categories
+    } = this.props.post;
+
     const post = {
-      uuid: uuidv1(),
-      title: this.state.title,
-      content: this.state.content,
-      category: this.state.category,
+      uuid: (uuid && uuid !== '') ? uuid : uuidv1(),
+      title,
+      content,
+      categories,
       author: {
         name: 'paul johns',
         role: 'admin'
@@ -52,6 +54,10 @@ export default class CreateForm extends React.Component {
 
   render = () => {
 
+    const { dispatch, post } = this.props;
+    if (!post.content) {
+      post.content = '';
+    }
     return (
       <Row className="post-create-form">
         <Col xs={12} md={9} className="main-panel">
@@ -59,12 +65,10 @@ export default class CreateForm extends React.Component {
           <div className="form-block">
             <FormControl
               type="text"
-              value={this.state.title}
+              value={post.title}
               placeholder="Title"
               onChange={(event) => {
-                this.setState({
-                  title: event.target.value
-                });
+                dispatch(updatePostTitle(event.target.value));
               }}
             />
           </div>
@@ -73,11 +77,7 @@ export default class CreateForm extends React.Component {
             <CKEditor
               activeClass="p10"
               content={this.state.content}
-              events={{
-                blur: this.onBlur,
-                afterPaste: this.afterPaste,
-                change: this.onChange
-              }}
+              events={{ change: this.onChange }}
             />
           </div>
 
@@ -88,9 +88,7 @@ export default class CreateForm extends React.Component {
             <Button
               bsStyle="primary"
               className="cms-button"
-              onClick={
-                () => this.save()
-              }
+              onClick={() => this.save()}
             >
               Save
             </Button>
@@ -99,9 +97,10 @@ export default class CreateForm extends React.Component {
           <div className="form-block select-option">
             <CategoryFilter
               multiSelect={true}
+              value={post.categories}
               placeholder="Category"
-              callback={(category) => {
-                this.setState({ category });
+              callback={(categories) => {
+                dispatch(updatePostCategories(categories));
               }}
             />
           </div>

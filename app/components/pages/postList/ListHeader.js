@@ -10,15 +10,15 @@ import styled from 'styled-components';
 import {
   deletePosts, setSearchFilter as setPostSearchFilter,
   toggleFiltersComponent
-} from '../../../actions/postActions';
+} from '../../../actions/pages/postActions';
 
 const SweetAlertWrapper = styled.div``;
 
 @connect((store) => {
   return {
-    filters: store.post.filters,
     posts: store.demo.posts,
-    selectedPosts: store.post.selectedPosts,
+    filters: store.postPage.filters,
+    selectedPosts: store.postPage.selectedPosts,
   };
 })
 @withRouter

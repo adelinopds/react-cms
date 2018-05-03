@@ -1,7 +1,4 @@
-import {
-  SET_FILTER, GET_POSTS, SET_SELECTED_POSTS, TOGGLE_FILTERS_COMPONENT,
-  DELETE_POSTS, RESET_FETCHING_SETTINGS, SET_POSTS_DEMO
-} from '../constants/postContants';
+import { POST } from '../../constants/postContants';
 
 const initialState = {
   selectAll: false,
@@ -23,7 +20,7 @@ export default (state = initialState, action) => {
 
   switch (action.type) {
 
-    case SET_FILTER:
+    case POST.SET_FILTER:
 
       if (action.payload.keyword && action.payload.keyword !== '') {
         filters = {
@@ -37,13 +34,7 @@ export default (state = initialState, action) => {
         };
       }
 
-      if (action.payload.authors) {
-        filters = {
-          ...state.filters,
-          authors: action.payload.authors
-        };
-      }
-
+      if (action.payload.authors) filters = { ...state.filters, authors: action.payload.authors };
       if (action.payload.categories) {
         filters = {
           ...state.filters,
@@ -63,32 +54,26 @@ export default (state = initialState, action) => {
         filters
       };
 
-    case TOGGLE_FILTERS_COMPONENT:
+    case POST.TOGGLE_FILTERS_COMPONENT:
       return {
         ...state,
         showFilters: !state.showFilters
       };
 
-    case SET_SELECTED_POSTS:
+    case POST.SET_SELECTED_POSTS:
       return {
         ...state,
         selectedPosts: action.payload.posts,
         selectAll: action.payload.selectAll
       };
 
-    case GET_POSTS:
+    case POST.GET_POSTS:
       return {
         ...state,
         posts: action.payload
       };
 
-    case SET_POSTS_DEMO:
-      return {
-        ...state,
-        posts: action.payload
-      };
-
-    case DELETE_POSTS:
+    case POST.DELETE_POSTS:
       return {
         ...state,
         posts: action.payload,
@@ -96,7 +81,7 @@ export default (state = initialState, action) => {
       };
 
     // TODO : will be remove replaced by redux-promise()
-    case RESET_FETCHING_SETTINGS:
+    case POST.RESET_FETCHING_SETTINGS:
       return {
         ...state,
         selectedPosts: [],

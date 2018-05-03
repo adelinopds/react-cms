@@ -7,19 +7,15 @@ import {
 } from 'react-bootstrap';
 import SweetAlert from 'sweetalert2-react';
 import styled from 'styled-components';
-import { deletePosts } from '../../../actions/postActions';
 
 const SweetAlertWrapper = styled.div``;
 
-@connect((store) => {
-  return {
-    filters: store.post.filters,
-    posts: store.demo.posts,
-    selectedPosts: store.post.selectedPosts,
-  };
-})
 @withRouter
 export default class FormHeader extends React.Component {
+
+  static defaultProps = {
+    editionMode: false
+  };
 
   state = {
     showAlert: false,
@@ -52,7 +48,6 @@ export default class FormHeader extends React.Component {
             title={this.state.titleWarning}
             text={this.state.contentWarning}
             onConfirm={() => {
-              this.props.dispatch(deletePosts(this.props.selectedPosts, this.props.posts));
               this.setState({
                 showWarning: false,
                 showConfirm: true,
@@ -79,11 +74,11 @@ export default class FormHeader extends React.Component {
     );
   };
 
-  renderHeader = (view) => {
+  renderHeader = () => {
     return (
       <Row>
         <Col md={4}>
-          <h2>{(view === 'edit') ? 'Edit post' : 'Add new post'}</h2>
+          <h2>{this.props.editionMode ? 'Edit post' : 'Add new post'}</h2>
         </Col>
 
         <Col md={8}>
@@ -99,19 +94,11 @@ export default class FormHeader extends React.Component {
 
   render = () => {
 
-    let view = 'list';
-    if (window.location.pathname.indexOf('edit') !== -1) {
-      view = 'edit';
-    }
-    if (window.location.pathname.indexOf('create') !== -1) {
-      view = 'create';
-    }
-
     return (
 
       <div className="cms-header">
         {this.renderSweetAlerts()}
-        {this.renderHeader(view)}
+        {this.renderHeader()}
       </div>
 
     );
