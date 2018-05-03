@@ -42,7 +42,7 @@ const Routes = () => {
 
       <ProtectedRoute path="/post" component={PostIndex} exact/>
       <ProtectedRoute path="/post/create" component={PostForm}/>
-      <ProtectedRoute path="/post/add" component={PostForm}/>
+      <ProtectedRoute path="/post/edit/:uuid" component={PostForm}/>
 
       <ProtectedRoute path="/user" component={User}/>
       <ProtectedRoute path="/contact" component={ContactPage}/>

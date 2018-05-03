@@ -4,6 +4,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { Row, Col, Table, Button } from 'react-bootstrap';
 import { getPosts, resetFetchingSettings, setSelectedPosts } from '../../../actions/postActions';
@@ -149,7 +150,9 @@ export default class PostList extends React.Component {
           <td>Table cell</td>
           <td>Table cell</td>
           <td>
-            <Button bsSize="small" className="cms-edit-button">Edit</Button>
+            <Link to={`/post/edit/${post.uuid}`}>
+              <Button bsSize="small" className="cms-edit-button">Edit</Button>
+            </Link>
           </td>
         </tr>
       );

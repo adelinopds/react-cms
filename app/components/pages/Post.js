@@ -1,10 +1,10 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { PageWrapper } from '../../constants/constants';
-import Header from './post/Header';
 import Filters from './post/Filters';
 import List from './post/List';
 import PrimaryMenu from '../menus/PrimaryMenu';
+import ListHeader from './post/ListHeader';
 
 export default class Post extends React.Component {
 
@@ -16,7 +16,7 @@ export default class Post extends React.Component {
         <Grid>
           <Row>
             <Col md={12}>
-              <Header />
+              <ListHeader />
               <Filters />
               <List />
             </Col>

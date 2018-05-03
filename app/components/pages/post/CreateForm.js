@@ -36,7 +36,7 @@ export default class CreateForm extends React.Component {
   save = () => {
 
     const post = {
-      id: uuidv1(),
+      uuid: uuidv1(),
       title: this.state.title,
       content: this.state.content,
       category: this.state.category,

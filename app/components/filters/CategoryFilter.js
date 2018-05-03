@@ -36,7 +36,7 @@ export default class CategoryFilter extends React.Component {
           isMulti={this.props.multiSelect}
           isClearable
           getOptionLabel={option => option.name}
-          getOptionValue={option => option.id}
+          getOptionValue={option => option.uuid}
           isSearchable
           isLoading={this.state.loading}
           onChange={value => this.props.callback(value)}

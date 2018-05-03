@@ -1,6 +1,6 @@
 export const posts = [
   {
-    id: 1,
+    uuid: 1,
     title: 'First Item',
     content: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ' +
     'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', ' +
@@ -12,13 +12,13 @@ export const posts = [
       role: 'admin'
     },
     categories: [
-      { id: 1, name: 'Classic' },
-      { id: 2, name: 'Popular' },
+      { uuid: 1, name: 'Classic' },
+      { uuid: 2, name: 'Popular' },
     ],
     createdAt: '2010-01-01T05:06:07'
   },
   {
-    id: 2,
+    uuid: 2,
     title: 'My new post',
     content: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ' +
     'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', ' +
@@ -30,13 +30,13 @@ export const posts = [
       role: 'admin'
     },
     categories: [
-      { id: 1, name: 'Classic' },
-      { id: 2, name: 'Popular' },
+      { uuid: 1, name: 'Classic' },
+      { uuid: 2, name: 'Popular' },
     ],
     createdAt: '2010-01-01T05:06:07'
   },
   {
-    id: 3,
+    uuid: 3,
     title: 'She is knows that is truth',
     content: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ' +
     'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', ' +
@@ -48,13 +48,13 @@ export const posts = [
       role: 'admin'
     },
     categories: [
-      { id: 1, name: 'Classic' },
-      { id: 2, name: 'Popular' },
+      { uuid: 1, name: 'Classic' },
+      { uuid: 2, name: 'Popular' },
     ],
     createdAt: '2010-01-01T05:06:07'
   },
   {
-    id: 4,
+    uuid: 4,
     title: 'Lorem from gipsum',
     content: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ' +
     'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', ' +
@@ -66,13 +66,13 @@ export const posts = [
       role: 'admin'
     },
     categories: [
-      { id: 1, name: 'Classic' },
-      { id: 2, name: 'Popular' },
+      { uuid: 1, name: 'Classic' },
+      { uuid: 2, name: 'Popular' },
     ],
     createdAt: '2010-01-01T05:06:07'
   },
   {
-    id: 5,
+    uuid: 5,
     title: 'Lorem ipsume',
     content: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ' +
     'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', ' +
@@ -84,13 +84,13 @@ export const posts = [
       role: 'admin'
     },
     categories: [
-      { id: 1, name: 'Classic' },
-      { id: 2, name: 'Popular' },
+      { uuid: 1, name: 'Classic' },
+      { uuid: 2, name: 'Popular' },
     ],
     createdAt: '2010-01-01T05:06:07'
   },
   {
-    id: 6,
+    uuid: 6,
     title: 'Lorem ipsume',
     content: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ' +
     'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', ' +
@@ -102,13 +102,13 @@ export const posts = [
       role: 'admin'
     },
     categories: [
-      { id: 1, name: 'Classic' },
-      { id: 2, name: 'Popular' },
+      { uuid: 1, name: 'Classic' },
+      { uuid: 2, name: 'Popular' },
     ],
     createdAt: '2010-01-01T05:06:07'
   },
   {
-    id: 7,
+    uuid: 7,
     title: 'Lorem ipsume',
     content: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ' +
     'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', ' +
@@ -120,13 +120,13 @@ export const posts = [
       role: 'admin'
     },
     categories: [
-      { id: 1, name: 'Classic' },
-      { id: 2, name: 'Popular' },
+      { uuid: 1, name: 'Classic' },
+      { uuid: 2, name: 'Popular' },
     ],
     createdAt: '2010-01-01T05:06:07'
   },
   {
-    id: 8,
+    uuid: 8,
     title: 'Lorem ipsume',
     content: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ' +
     'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', ' +
@@ -138,12 +138,12 @@ export const posts = [
       role: 'admin'
     },
     categories: [
-      { id: 1, name: 'Classic' },
+      { uuid: 1, name: 'Classic' },
     ],
     createdAt: '2010-01-01T05:06:07'
   },
   {
-    id: 9,
+    uuid: 9,
     title: 'Last Test',
     content: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ' +
     'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', ' +
@@ -155,8 +155,8 @@ export const posts = [
       role: 'admin'
     },
     categories: [
-      { id: 1, name: 'Classic' },
-      { id: 2, name: 'Popular' },
+      { uuid: 1, name: 'Classic' },
+      { uuid: 2, name: 'Popular' },
     ],
     createdAt: '2010-01-01T05:06:07'
   },
@@ -164,15 +164,15 @@ export const posts = [
 
 export const categories = [
   {
-    id: 1,
+    uuid: 1,
     name: 'Classic'
   },
   {
-    id: 2,
+    uuid: 2,
     name: 'Popular'
   },
   {
-    id: 3,
+    uuid: 3,
     name: 'Tech'
   },
 ];
