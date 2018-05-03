@@ -6,7 +6,8 @@ export default class CategoryFilter extends React.Component {
 
   static defaultProps = {
     multiSelect: false,
-    placeholder: 'Select categories'
+    placeholder: 'Select categories',
+    selected: []
   };
 
   state = {
@@ -32,6 +33,7 @@ export default class CategoryFilter extends React.Component {
       <div>
 
         <Select
+          value={this.props.selected}
           placeholder={this.props.placeholder}
           isMulti={this.props.multiSelect}
           isClearable

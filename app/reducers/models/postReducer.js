@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
 
   switch (action.type) {
 
-    case POST.SET:
+    case POST.SELECT:
       return {
         ...state,
         post: action.payload,
@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
     case POST.UPDATE:
       return {
         ...state,
-        post: { ...action.payload }
+        post: { ...state.post, ...action.payload }
       };
     default:
       return state;

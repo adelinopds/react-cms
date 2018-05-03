@@ -19,16 +19,9 @@ export default class CreateForm extends React.Component {
     editionMode: false,
   };
 
-  state = {
-    content: ''
-  };
-
   onChange = (evt) => {
     const newContent = evt.editor.getData();
     this.props.dispatch(updatePostContent(newContent));
-    this.setState({
-      content: newContent
-    });
   };
 
   save = () => {
@@ -76,7 +69,7 @@ export default class CreateForm extends React.Component {
           <div className="form-block">
             <CKEditor
               activeClass="p10"
-              content={this.state.content}
+              content={post.content}
               events={{ change: this.onChange }}
             />
           </div>
@@ -93,13 +86,14 @@ export default class CreateForm extends React.Component {
               Save
             </Button>
           </div>
-
+          {console.log(post.categories, 'post.categories ENTRY!!!!')}
           <div className="form-block select-option">
             <CategoryFilter
               multiSelect={true}
-              value={post.categories}
+              selected={post.categories}
               placeholder="Category"
               callback={(categories) => {
+                console.log(categories, 'categories OUT !!!!');
                 dispatch(updatePostCategories(categories));
               }}
             />
