@@ -1,12 +1,7 @@
 import axios from 'axios';
 import _ from 'lodash';
 import {
-  PAGE,
-  SET_FILTER,
-  GET_POSTS,
-  SET_POSTS_DEMO,
-  SET_SELECTED_POSTS,
-  TOGGLE_FILTERS_COMPONENT, DELETE_POSTS, RESET_FETCHING_SETTINGS, POST
+  PAGE
 } from '../../constants/postContants';
 
 export const setSearchFilter = (filter) => {

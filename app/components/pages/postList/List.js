@@ -125,7 +125,13 @@ export default class PostList extends React.Component {
   };
 
   renderContent = () => {
-    return this.props.posts.map((post, index) => {
+
+    let { posts } = this.props;
+    if (config.DEMO) {
+      posts = _.orderBy(posts, ['uuid'], ['asc']);
+    }
+
+    return posts.map((post, index) => {
       return (
         <tr key={index}>
           <td>

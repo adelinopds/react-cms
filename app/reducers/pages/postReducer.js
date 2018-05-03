@@ -1,4 +1,4 @@
-import { POST } from '../../constants/postContants';
+import { PAGE } from '../../constants/postContants';
 
 const initialState = {
   selectAll: false,
@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
 
   switch (action.type) {
 
-    case POST.SET_FILTER:
+    case PAGE.SET_FILTER:
 
       if (action.payload.keyword && action.payload.keyword !== '') {
         filters = {
@@ -54,26 +54,26 @@ export default (state = initialState, action) => {
         filters
       };
 
-    case POST.TOGGLE_FILTERS_COMPONENT:
+    case PAGE.TOGGLE_FILTERS_COMPONENT:
       return {
         ...state,
         showFilters: !state.showFilters
       };
 
-    case POST.SET_SELECTED_POSTS:
+    case PAGE.SET_SELECTED_POSTS:
       return {
         ...state,
         selectedPosts: action.payload.posts,
         selectAll: action.payload.selectAll
       };
 
-    case POST.GET_POSTS:
+    case PAGE.GET_POSTS:
       return {
         ...state,
         posts: action.payload
       };
 
-    case POST.DELETE_POSTS:
+    case PAGE.DELETE_POSTS:
       return {
         ...state,
         posts: action.payload,
@@ -81,7 +81,7 @@ export default (state = initialState, action) => {
       };
 
     // TODO : will be remove replaced by redux-promise()
-    case POST.RESET_FETCHING_SETTINGS:
+    case PAGE.RESET_FETCHING_SETTINGS:
       return {
         ...state,
         selectedPosts: [],
