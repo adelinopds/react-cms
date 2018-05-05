@@ -32,6 +32,7 @@ Make sure you have the latest Stable or LTS version of Node.js installed.
 - `npm start` - start the dev server
 - `npm clean` - delete the dist folder
 - `npm run production` - create a production ready build in `dist` folder
+- `npm run livecode` - create a production ready build in `dist` folder and sync code with AWS bucket
 - `npm run lint` - execute an eslint check
 - `npm test` - run all tests
 - `npm run test:watch` - run all tests in watch mode

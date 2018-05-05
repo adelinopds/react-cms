@@ -64,6 +64,10 @@ const config = {
         }),
       },
       {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
+      },
+      {
         test: /\.(png|jpg|gif)$/,
         use: [
           {

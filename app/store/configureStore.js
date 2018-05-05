@@ -4,12 +4,6 @@ import promise from 'redux-promise-middleware';
 import reducer from '../reducers/rootReducer';
 import config from '../config';
 
-if (process.env.NODE_ENV === 'production') {
-  require('dotenv').config({ path: '.env.production' });
-} else {
-  require('dotenv').config({ path: `${__dirname}/../../.env` });
-}
-
 const middleware = [
   promise(),
   config.DEBUG && createLogger(),
