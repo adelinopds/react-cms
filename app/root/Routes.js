@@ -6,7 +6,7 @@ import User from '../components/pages/User';
 import ContactPage from '../components/pages/Contact';
 import HomePage from '../components/pages/Home';
 import Login from '../components/Login';
-import SignUp from '../components/SignUp';
+import ResetPassword from '../components/ResetPassword';
 import isAuthorized from '../helpers/isAuthorized';
 import PostIndex from '../components/pages/PostList';
 import PostForm from '../components/pages/PostCreate';
@@ -36,7 +36,7 @@ const Routes = () => {
   return (
     <Switch>
       <Route path="/login" component={Login}/>
-      <Route path="/sign-up" component={SignUp}/>
+      <Route path="/reset-password" component={ResetPassword}/>
 
       <ProtectedRoute path="/" component={HomePage} exact/>
 

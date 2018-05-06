@@ -1,17 +1,11 @@
 import {
-  FAKE_AUTORIZATION, LOGIN_COGNITO_REQUEST,
-  LOGIN_REQUEST,
+  CHANGE_PASSWORD_COGNITO_REQUEST,
+  LOGIN_COGNITO_REQUEST,
   LOGOUT
 } from '../constants/userConstants';
 
 const initialState = {
-  user: {
-    uuid: 0,
-    username: '',
-    firstName: '',
-    lastName: '',
-    token: '',
-  },
+  user: {}, // CognitoUser
   expire: '',
   fetching: false,
   authorized: false,
@@ -22,32 +16,6 @@ const initialState = {
 export default (state = initialState, action) => {
 
   switch (action.type) {
-
-    case LOGIN_REQUEST.PENDING:
-      return {
-        ...state,
-        fetching: true
-      };
-    case LOGIN_REQUEST.REJECTED:
-      return {
-        ...state,
-        fetching: false,
-        authError: action.payload
-      };
-    case LOGIN_REQUEST.FULFILLED:
-      if (action.payload.data.token) {
-        localStorage.setItem('user-token', action.payload.data.token);
-        return {
-          ...state,
-          fetching: false,
-          user: action.payload.data
-        };
-      }
-      return {
-        ...state,
-        fetching: false,
-        authError: action.payload.data.error
-      };
 
     case LOGIN_COGNITO_REQUEST.PENDING:
       return {
@@ -61,18 +29,28 @@ export default (state = initialState, action) => {
         authError: action.payload
       };
     case LOGIN_COGNITO_REQUEST.FULFILLED:
-      if (action.payload.data.token) {
-        localStorage.setItem('user-token', action.payload.data.token);
-        return {
-          ...state,
-          fetching: false,
-          user: action.payload.data
-        };
-      }
       return {
         ...state,
         fetching: false,
-        authError: action.payload.data.error
+        user: action.payload
+      };
+
+    case CHANGE_PASSWORD_COGNITO_REQUEST.PENDING:
+      return {
+        ...state,
+        fetching: true
+      };
+    case CHANGE_PASSWORD_COGNITO_REQUEST.REJECTED:
+      return {
+        ...state,
+        fetching: false,
+        authError: action.payload
+      };
+    case CHANGE_PASSWORD_COGNITO_REQUEST.FULFILLED:
+      return {
+        ...state,
+        fetching: false,
+        user: action.payload.data
       };
 
     case LOGOUT:
