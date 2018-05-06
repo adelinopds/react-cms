@@ -1,13 +1,17 @@
 import React from 'react';
+import { Auth, Logger } from 'aws-amplify';
+import { AuthPiece } from 'aws-amplify-react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
-import { loginUser } from '../../actions/userActions';
+import { loginCognitoUser, loginUser } from '../../actions/userActions';
 import isAuthorized from '../../helpers/isAuthorized';
 import loginValidator from './../validators/loginValidator';
 import config from '../../config';
 import fakeAuthorization from '../../helpers/fakeAuthorization';
+
+const logger = new Logger('LoginForm');
 
 @connect((store) => {
   return {
@@ -15,7 +19,7 @@ import fakeAuthorization from '../../helpers/fakeAuthorization';
     authError: store.user.authError,
   };
 })
-export default class LoginForm extends React.Component {
+export default class LoginForm extends AuthPiece {
 
   state = {
     remember: true,
@@ -59,9 +63,10 @@ export default class LoginForm extends React.Component {
     });
 
     const { email, password } = this.state;
+    logger.debug(`username: ${email}`);
     try {
       loginValidator(email, password);
-      this.props.dispatch(loginUser({
+      this.props.dispatch(loginCognitoUser({
         email,
         password
       }));
@@ -96,6 +101,7 @@ export default class LoginForm extends React.Component {
                   }}
                   value={this.state.email}
                   type="email"
+                  name="email"
                   className="form-control"
                   placeholder="Email address"
                 />
@@ -108,6 +114,7 @@ export default class LoginForm extends React.Component {
                   }}
                   value={this.state.password}
                   type="password"
+                  name="password"
                   className="form-control"
                   placeholder="Password"
                 />

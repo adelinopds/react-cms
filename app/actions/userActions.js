@@ -1,6 +1,12 @@
 import axios from 'axios';
+import { Auth } from 'aws-amplify';
 
-import { FAKE_AUTORIZATION, LOGIN_REQUEST, LOGOUT } from '../constants/userConstants';
+import {
+  FAKE_AUTORIZATION,
+  LOGIN_REQUEST,
+  LOGIN_COGNITO_REQUEST,
+  LOGOUT
+} from '../constants/userConstants';
 
 export const loginUser = user => ({
   type: LOGIN_REQUEST.BASE,
@@ -8,6 +14,11 @@ export const loginUser = user => ({
     username: user.email,
     password: user.password
   })
+});
+
+export const loginCognitoUser = user => ({
+  type: LOGIN_COGNITO_REQUEST.BASE,
+  payload: Auth.signIn(user.email, user.password)
 });
 
 export const logoutUser = () => ({

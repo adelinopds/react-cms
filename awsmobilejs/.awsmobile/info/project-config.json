@@ -1,0 +1,6 @@
+{
+	"SourceDir": "app",
+	"DistributionDir": "dist",
+	"BuildCommand": "yarn lifecode",
+	"StartCommand": "yarn test"
+}
