@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Button } from 'reactstrap';
 import styled from 'styled-components';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import isAuthorized from '../helpers/isAuthorized';
 import { changePassword } from '../actions/userActions';
+import { STATUS } from '../constants/userConstants';
 
 const SignUpContainer = styled.div``;
 
@@ -17,10 +18,10 @@ const SignUpContainer = styled.div``;
     authError: store.user.authError,
   };
 })
+@withRouter
 export default class ResetPassword extends AuthPiece {
 
   state = {
-    oldPassword: '',
     newPassword: '',
     reNewPassword: '',
     screenHeight: 0
@@ -41,14 +42,21 @@ export default class ResetPassword extends AuthPiece {
   };
 
   resetPassword = () => {
-    const { oldPassword, newPassword, reNewPassword } = this.state;
-    const { user, dispatch } = this.props;
+    const { newPassword, reNewPassword } = this.state;
+    const { user, location } = this.props;
 
     if (newPassword === reNewPassword) {
 
-      dispatch(changePassword(user, oldPassword, newPassword));
-
-      // TODO: add validation and test solution - response from AWS
+      // Execute only if ne password required
+      if (user.challengeName === STATUS.NEW_PASSWORD_REQUIRED) {
+        user.completeNewPasswordChallenge(newPassword, { email: location.state.email }, {
+          onSuccess: () => {
+            localStorage.setItem('user-token', 'something'); // TODO: remove temporary and check if JWT is set
+            this.props.history.push('/');
+          },
+          onFailure: err => console.log(err)
+        });
+      }
     } else {
       // TODO: add error handler
       console.log('new password and re-pass must be same');
@@ -72,17 +80,6 @@ export default class ResetPassword extends AuthPiece {
                 <h3 className="form-title">Reset Password</h3>
                 <form className="register-form">
 
-                  <input
-                    name="old-password"
-                    value={this.state.oldPassword}
-                    type="password"
-                    className="form-control"
-                    placeholder="Old password"
-                    onChange={(element) => {
-                      this.setState({ oldPassword: element.target.value });
-                    }}
-                    required
-                  />
                   <input
                     name="new-password"
                     value={this.state.newPassword}

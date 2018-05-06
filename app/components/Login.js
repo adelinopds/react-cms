@@ -1,13 +1,6 @@
 import React from 'react';
 import { Auth, Logger } from 'aws-amplify';
 import { AuthPiece } from 'aws-amplify-react';
-import AWS from 'aws-sdk';
-import {
-  CognitoUserPool,
-  CognitoUserAttribute,
-  CognitoUser,
-  AuthenticationDetails
-} from 'amazon-cognito-identity-js';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
@@ -44,25 +37,11 @@ export default class LoginForm extends AuthPiece {
 
   shouldComponentUpdate = (nextProps) => {
 
-    console.log(AWS, 'OATHU');
-
-    // respondToAuthChallenge
-
     if (nextProps.user.challengeName === STATUS.NEW_PASSWORD_REQUIRED) {
-
-      Auth.forgotPassword(this.state.username)
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
-      // this.props.history.push('/reset-password');
-    } else {
-      // localStorage.setItem('user-token', 'something');
-      // this.props.history.push('/');
+      this.props.history.push('/reset-password', {
+        email: this.state.username
+      });
     }
-
-    // TODO : redirect to "ForgotPassword" !!!! FLOW
-
-    // TODO: check what happend after log in and reset password,
-    // TODO: perhaps need to set localStorage.set ('user-token)
 
     if (nextProps.authError !== this.props.authError) {
       this.setState({
@@ -81,7 +60,7 @@ export default class LoginForm extends AuthPiece {
     this.setState({ screenHeight });
   };
 
-  getUSerTest = () => {
+  getCognitoUser = () => {
     Auth.currentAuthenticatedUser().then((user) => {
       console.log(user, 'USER');
     }).catch(error => console.log(error, 'error'));
@@ -93,7 +72,7 @@ export default class LoginForm extends AuthPiece {
     });
 
     const { username, password } = this.state;
-    logger.debug(`username: ${username}`);
+    this.props.dispatch(loginUser(username, password));
     try {
       loginValidator(username, password);
       this.props.dispatch(loginUser(username, password));
@@ -102,46 +81,6 @@ export default class LoginForm extends AuthPiece {
         errorMessage: `${error.type} ${error.message}`
       });
     }
-  };
-
-  signIn2 = () => {
-    const authenticationData = {
-      Username: 'admin@admin.com',
-      Password: 'dC_73^%2',
-    };
-    const authenticationDetails =
-      new AuthenticationDetails(authenticationData);
-
-    const poolData = {
-        UserPoolId: process.env.COGNITO_USER_POOL_ID,
-        ClientId: process.env.COGNITO_USER_POOL_CLIENT_ID
-      };
-    const userPool = new CognitoUserPool(poolData);
-    const userData = {
-      Username: 'admin@admin.com',
-      Pool: userPool
-    };
-
-    const cognitoUser = new CognitoUser(userData);
-
-    cognitoUser.authenticateUser(authenticationDetails, {
-      onSuccess: (result) => {
-        console.log(`access token ${result.getAccessToken().getJwtToken()}`);
-        console.log(`idToken ${result.idToken.jwtToken}`);
-      },
-
-      onFailure: (err) => {
-        console.log(err);
-      },
-
-      newPasswordRequired: (userAttributes) => {
-
-        console.log(userAttributes, 'userAttributes');
-        delete userAttributes.email_verified;
-        cognitoUser.completeNewPasswordChallenge('dC_73^%2X', userAttributes, this);
-      }
-
-    });
   };
 
   render = () => {
@@ -211,20 +150,6 @@ export default class LoginForm extends AuthPiece {
                   onClick={() => this.signIn()}
                 >
                   Sign in
-                </Button>
-
-                <Button
-                  className="cms-button"
-                  onClick={() => this.signIn2()}
-                >
-                  Sign in first
-                </Button>
-
-                <Button
-                  className="cms-button"
-                  onClick={() => this.getUSerTest()}
-                >
-                  get user
                 </Button>
 
               </form>
