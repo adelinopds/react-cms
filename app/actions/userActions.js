@@ -6,9 +6,9 @@ import {
   LOGOUT, CHANGE_PASSWORD_COGNITO_REQUEST
 } from '../constants/userConstants';
 
-export const loginUser = user => ({
+export const loginUser = (email, password) => ({
   type: LOGIN_COGNITO_REQUEST.BASE,
-  payload: Auth.signIn(user.email, user.password)
+  payload: Auth.signIn(email, password)
 });
 
 export const changePassword = (user, oldPassword, newPassword) => ({

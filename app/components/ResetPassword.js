@@ -42,15 +42,12 @@ export default class ResetPassword extends AuthPiece {
 
   resetPassword = () => {
     const { oldPassword, newPassword, reNewPassword } = this.state;
-    const { dispatch } = this.props;
+    const { user, dispatch } = this.props;
 
-
-    console.log('tereewrew');
     if (newPassword === reNewPassword) {
-      Auth.currentAuthenticatedUser().then((user) => {
-        console.log(user, 'tere');
-        // dispatch(changePassword(user, oldPassword, newPassword));
-      }).catch(error => this.error(error));
+
+      dispatch(changePassword(user, oldPassword, newPassword));
+
       // TODO: add validation and test solution - response from AWS
     } else {
       // TODO: add error handler

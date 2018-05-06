@@ -36,11 +36,11 @@ export default class LoginForm extends AuthPiece {
 
   shouldComponentUpdate = (nextProps) => {
 
-    Auth.currentAuthenticatedUser().then(test => console.log(test, 'ewewewq'));
+    if (nextProps.user.challengeName === STATUS.NEW_PASSWORD_REQUIRED) {
+      this.props.history.push('/reset-password');
+    }
 
-    // if (nextProps.user.challengeName === STATUS.NEW_PASSWORD_REQUIRED) {
-    //   this.props.history.push('/reset-password');
-    // }
+    // TODO : redirect to "ForgotPassword" !!!! FLOW
 
     // TODO: check what happend after log in and reset password,
     // TODO: perhaps need to set localStorage.set ('user-token)
@@ -71,10 +71,7 @@ export default class LoginForm extends AuthPiece {
     logger.debug(`username: ${email}`);
     try {
       loginValidator(email, password);
-      this.props.dispatch(loginUser({
-        email,
-        password
-      }));
+      this.props.dispatch(loginUser(email, password));
     } catch (error) {
       this.setState({
         errorMessage: `${error.type} ${error.message}`
