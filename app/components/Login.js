@@ -1,6 +1,13 @@
 import React from 'react';
 import { Auth, Logger } from 'aws-amplify';
 import { AuthPiece } from 'aws-amplify-react';
+import AWS from 'aws-sdk';
+import {
+  CognitoUserPool,
+  CognitoUserAttribute,
+  CognitoUser,
+  AuthenticationDetails
+} from 'amazon-cognito-identity-js';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
@@ -9,6 +16,7 @@ import { loginUser } from '../actions/userActions';
 import isAuthorized from '../helpers/isAuthorized';
 import loginValidator from './validators/loginValidator';
 import { STATUS } from '../constants/userConstants';
+
 
 const logger = new Logger('LoginForm');
 
@@ -23,7 +31,7 @@ export default class LoginForm extends AuthPiece {
 
   state = {
     remember: true,
-    email: '',
+    username: '',
     password: '',
     errorMessage: '',
     screenHeight: 0
@@ -36,8 +44,19 @@ export default class LoginForm extends AuthPiece {
 
   shouldComponentUpdate = (nextProps) => {
 
+    console.log(AWS, 'OATHU');
+
+    // respondToAuthChallenge
+
     if (nextProps.user.challengeName === STATUS.NEW_PASSWORD_REQUIRED) {
-      this.props.history.push('/reset-password');
+
+      Auth.forgotPassword(this.state.username)
+        .then(data => console.log(data))
+        .catch(err => console.log(err));
+      // this.props.history.push('/reset-password');
+    } else {
+      // localStorage.setItem('user-token', 'something');
+      // this.props.history.push('/');
     }
 
     // TODO : redirect to "ForgotPassword" !!!! FLOW
@@ -62,21 +81,67 @@ export default class LoginForm extends AuthPiece {
     this.setState({ screenHeight });
   };
 
+  getUSerTest = () => {
+    Auth.currentAuthenticatedUser().then((user) => {
+      console.log(user, 'USER');
+    }).catch(error => console.log(error, 'error'));
+  };
+
   signIn = () => {
     this.setState({
       errorMessage: ''
     });
 
-    const { email, password } = this.state;
-    logger.debug(`username: ${email}`);
+    const { username, password } = this.state;
+    logger.debug(`username: ${username}`);
     try {
-      loginValidator(email, password);
-      this.props.dispatch(loginUser(email, password));
+      loginValidator(username, password);
+      this.props.dispatch(loginUser(username, password));
     } catch (error) {
       this.setState({
         errorMessage: `${error.type} ${error.message}`
       });
     }
+  };
+
+  signIn2 = () => {
+    const authenticationData = {
+      Username: 'admin@admin.com',
+      Password: 'dC_73^%2',
+    };
+    const authenticationDetails =
+      new AuthenticationDetails(authenticationData);
+
+    const poolData = {
+        UserPoolId: process.env.COGNITO_USER_POOL_ID,
+        ClientId: process.env.COGNITO_USER_POOL_CLIENT_ID
+      };
+    const userPool = new CognitoUserPool(poolData);
+    const userData = {
+      Username: 'admin@admin.com',
+      Pool: userPool
+    };
+
+    const cognitoUser = new CognitoUser(userData);
+
+    cognitoUser.authenticateUser(authenticationDetails, {
+      onSuccess: (result) => {
+        console.log(`access token ${result.getAccessToken().getJwtToken()}`);
+        console.log(`idToken ${result.idToken.jwtToken}`);
+      },
+
+      onFailure: (err) => {
+        console.log(err);
+      },
+
+      newPasswordRequired: (userAttributes) => {
+
+        console.log(userAttributes, 'userAttributes');
+        delete userAttributes.email_verified;
+        cognitoUser.completeNewPasswordChallenge('dC_73^%2X', userAttributes, this);
+      }
+
+    });
   };
 
   render = () => {
@@ -98,10 +163,10 @@ export default class LoginForm extends AuthPiece {
                 <input
                   onChange={(event) => {
                     this.setState({
-                      email: event.target.value
+                      username: event.target.value
                     });
                   }}
-                  value={this.state.email}
+                  value={this.state.username}
                   type="email"
                   name="email"
                   className="form-control"
@@ -146,6 +211,20 @@ export default class LoginForm extends AuthPiece {
                   onClick={() => this.signIn()}
                 >
                   Sign in
+                </Button>
+
+                <Button
+                  className="cms-button"
+                  onClick={() => this.signIn2()}
+                >
+                  Sign in first
+                </Button>
+
+                <Button
+                  className="cms-button"
+                  onClick={() => this.getUSerTest()}
+                >
+                  get user
                 </Button>
 
               </form>
