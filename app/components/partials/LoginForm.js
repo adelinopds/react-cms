@@ -147,16 +147,6 @@ export default class LoginForm extends React.Component {
                 Forgot the password?
               </div>
 
-              <div className="sign-up">
-                <Link to="/sign-up">
-                  <Button
-                    type="submit"
-                    className="cms-button"
-                  >
-                    Sign up
-                  </Button>
-                </Link>
-              </div>
             </div>
           </Col>
         </Row>
