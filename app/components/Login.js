@@ -1,5 +1,5 @@
 import React from 'react';
-import { Logger } from 'aws-amplify';
+import { Auth, Logger } from 'aws-amplify';
 import { AuthPiece } from 'aws-amplify-react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
@@ -36,9 +36,11 @@ export default class LoginForm extends AuthPiece {
 
   shouldComponentUpdate = (nextProps) => {
 
-    if (nextProps.user.challengeName === STATUS.NEW_PASSWORD_REQUIRED) {
-      this.props.history.push('/reset-password');
-    }
+    Auth.currentAuthenticatedUser().then(test => console.log(test, 'ewewewq'));
+
+    // if (nextProps.user.challengeName === STATUS.NEW_PASSWORD_REQUIRED) {
+    //   this.props.history.push('/reset-password');
+    // }
 
     // TODO: check what happend after log in and reset password,
     // TODO: perhaps need to set localStorage.set ('user-token)

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Auth, AuthPiece } from 'aws-amplify-react';
+import { Auth } from 'aws-amplify';
+import { AuthPiece } from 'aws-amplify-react';
 import { connect } from 'react-redux';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Button } from 'reactstrap';
@@ -43,11 +44,14 @@ export default class ResetPassword extends AuthPiece {
     const { oldPassword, newPassword, reNewPassword } = this.state;
     const { dispatch } = this.props;
 
-    // TODO: add validation and test solution - response from AWS
+
+    console.log('tereewrew');
     if (newPassword === reNewPassword) {
       Auth.currentAuthenticatedUser().then((user) => {
-        dispatch(changePassword(user, oldPassword, newPassword));
+        console.log(user, 'tere');
+        // dispatch(changePassword(user, oldPassword, newPassword));
       }).catch(error => this.error(error));
+      // TODO: add validation and test solution - response from AWS
     } else {
       // TODO: add error handler
       console.log('new password and re-pass must be same');
@@ -106,9 +110,8 @@ export default class ResetPassword extends AuthPiece {
                   />
 
                   <Button
-                    type="submit"
                     className="cms-button"
-                    onClick={() => this.signUp()}
+                    onClick={() => this.resetPassword()}
                   >
                     Reset
                   </Button>
