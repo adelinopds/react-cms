@@ -35,7 +35,6 @@ export default class PrimaryMenu extends React.Component {
                   <div onClick={() => {
                     Auth.signOut()
                       .then((data) => {
-                        console.log(data, 'LOGOUT');
                         this.props.dispatch(logoutUser());
                       })
                       .catch(err => console.log(err));
