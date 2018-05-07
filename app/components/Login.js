@@ -43,6 +43,7 @@ export default class LoginForm extends AuthPiece {
       } else {
         Auth.currentAuthenticatedUser()
           .then((user) => {
+            console.log(user, 'test');
             localStorage.setItem('user-token', 'jwt-token-should-be-save-in-database');
             this.props.history.push('/');
           })
