@@ -36,10 +36,21 @@ export default class LoginForm extends AuthPiece {
 
   shouldComponentUpdate = (nextProps) => {
 
-    if (nextProps.user.challengeName === STATUS.NEW_PASSWORD_REQUIRED) {
-      this.props.history.push('/reset-password', {
-        email: this.state.username
-      });
+    if (nextProps.user !== this.props.user) {
+
+      if (nextProps.user.challengeName === STATUS.NEW_PASSWORD_REQUIRED) {
+        this.props.history.push('/reset-password');
+      } else {
+        Auth.currentAuthenticatedUser()
+          .then((user) => {
+            console.log(user, 'USER'); // TODO: Do some authorization 
+          })
+          .catch((errorMessage) => {
+            this.setState({
+              authError: errorMessage
+            });
+          });
+      }
     }
 
     if (nextProps.authError !== this.props.authError) {
@@ -57,12 +68,6 @@ export default class LoginForm extends AuthPiece {
   heightCalc = () => {
     const screenHeight = window.innerHeight;
     this.setState({ screenHeight });
-  };
-
-  getCognitoUser = () => {
-    Auth.currentAuthenticatedUser().then((user) => {
-      console.log(user, 'USER');
-    }).catch(error => console.log(error, 'error'));
   };
 
   signIn = () => {

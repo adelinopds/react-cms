@@ -26,7 +26,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fetching: false,
-        authError: action.payload
+        authError: action.payload.message
       };
     case LOGIN_COGNITO_REQUEST.FULFILLED:
       return {

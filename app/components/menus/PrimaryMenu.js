@@ -1,4 +1,5 @@
 import React from 'react';
+import { Auth } from 'aws-amplify';
 import styled from 'styled-components';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -32,7 +33,12 @@ export default class PrimaryMenu extends React.Component {
               (authorized) ?
                 <LinkWrapper>
                   <div onClick={() => {
-                    this.props.dispatch(logoutUser());
+                    Auth.signOut()
+                      .then((data) => {
+                        console.log(data, 'LOGOUT');
+                        this.props.dispatch(logoutUser());
+                      })
+                      .catch(err => console.log(err));
                   }}>Logout
                   </div>
                 </LinkWrapper> :
