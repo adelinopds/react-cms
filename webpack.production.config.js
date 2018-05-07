@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const config = {
   devtool: 'cheap-module-source-map',
@@ -38,6 +39,7 @@ const config = {
     new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
     new ExtractTextPlugin({ filename: './styles/style.css', disable: false, allChunks: true }),
     new CopyWebpackPlugin([{ from: './vendors', to: 'vendors' }]),
+    new Dotenv(),
   ],
 
   resolve: {
