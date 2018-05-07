@@ -1,6 +1,6 @@
-# ES6 React boilerplate using Webpack
+# ES6 React CMS using Webpack
 
-Simple and optimized React boilerplate. It includes:
+App includes:
 
 - [x] React 16.3.1
 - [x] ECMAScript 6 and JSX support
@@ -56,4 +56,13 @@ Run `npm run production`. The production-ready code will be located under `dist`
 
 ## Licence
 
-_react-webpack-boilerplate_ is available under MIT.
+Code is available under MIT.
+
+## DEMO:
+
+http://cms-react-entymon.s3-website-eu-west-1.amazonaws.com/
+
+username: demo
+password: Admin@2018
+
+

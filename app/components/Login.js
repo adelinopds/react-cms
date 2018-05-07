@@ -113,7 +113,7 @@ export default class LoginForm extends AuthPiece {
                   type="email"
                   name="email"
                   className="form-control"
-                  placeholder="Email address"
+                  placeholder="Username"
                 />
 
                 <input
