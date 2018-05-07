@@ -1,3 +1,5 @@
+// I don't remember the reason of this config ...
+
 window._config = {
   cognito: {
     userPoolId: 'eu-west-1_j4br5qLVG',
