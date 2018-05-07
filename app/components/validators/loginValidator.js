@@ -15,10 +15,6 @@ const loginValidator = (email, password) => {
     throw new ValidationError('email', 'is required');
   }
 
-  if (validEmail(email)) {
-    throw new ValidationError('email', 'is not valid');
-  }
-
   if (required(password)) {
     throw new ValidationError('password', 'is required');
   }

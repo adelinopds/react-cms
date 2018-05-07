@@ -43,20 +43,25 @@ export default class ResetPassword extends AuthPiece {
 
   resetPassword = () => {
     const { newPassword, reNewPassword } = this.state;
-    const { user, location } = this.props;
+    const { user } = this.props;
 
     if (newPassword === reNewPassword) {
 
       // Execute only if ne password required
       if (user.challengeName === STATUS.NEW_PASSWORD_REQUIRED) {
-        user.completeNewPasswordChallenge(newPassword, { email: location.state.email }, {
+        const { userAttributes } = user.challengeParam;
+        delete userAttributes.email_verified;
+
+        user.completeNewPasswordChallenge(newPassword, userAttributes, {
           onSuccess: () => {
+            // TODO: Add alert thar password was created
             localStorage.setItem('user-token', 'something'); // TODO: remove temporary and check if JWT is set
             this.props.history.push('/');
           },
           onFailure: err => console.log(err)
         });
       }
+
     } else {
       // TODO: add error handler
       console.log('new password and re-pass must be same');

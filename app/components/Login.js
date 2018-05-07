@@ -10,7 +10,6 @@ import isAuthorized from '../helpers/isAuthorized';
 import loginValidator from './validators/loginValidator';
 import { STATUS } from '../constants/userConstants';
 
-
 const logger = new Logger('LoginForm');
 
 @connect((store) => {
@@ -72,7 +71,6 @@ export default class LoginForm extends AuthPiece {
     });
 
     const { username, password } = this.state;
-    this.props.dispatch(loginUser(username, password));
     try {
       loginValidator(username, password);
       this.props.dispatch(loginUser(username, password));
@@ -81,6 +79,13 @@ export default class LoginForm extends AuthPiece {
         errorMessage: `${error.type} ${error.message}`
       });
     }
+  };
+
+
+  forgetPassword = () => {
+    Auth.forgotPassword('pawel.olejniczak.i@gmail.com')
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   };
 
   render = () => {
@@ -156,7 +161,7 @@ export default class LoginForm extends AuthPiece {
 
               <div
                 className="forgot-password"
-                onClick={() => {}}>
+                onClick={() => this.forgetPassword()}>
                 Forgot the password?
               </div>
 
