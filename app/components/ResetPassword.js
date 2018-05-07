@@ -1,13 +1,11 @@
 import React from 'react';
-import { Auth } from 'aws-amplify';
 import { AuthPiece } from 'aws-amplify-react';
 import { connect } from 'react-redux';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Button } from 'reactstrap';
 import styled from 'styled-components';
-import { Link, Redirect, withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import isAuthorized from '../helpers/isAuthorized';
-import { changePassword } from '../actions/userActions';
 import { STATUS } from '../constants/userConstants';
 
 const SignUpContainer = styled.div``;
@@ -24,7 +22,8 @@ export default class ResetPassword extends AuthPiece {
   state = {
     newPassword: '',
     reNewPassword: '',
-    screenHeight: 0
+    screenHeight: 0,
+    errorMessage: ''
   };
 
   componentDidMount = () => {
@@ -54,17 +53,17 @@ export default class ResetPassword extends AuthPiece {
 
         user.completeNewPasswordChallenge(newPassword, userAttributes, {
           onSuccess: () => {
-            // TODO: Add alert thar password was created
-            localStorage.setItem('user-token', 'something'); // TODO: remove temporary and check if JWT is set
+            localStorage.setItem('user-token', 'jwt-token-should-be-save-in-database');
             this.props.history.push('/');
           },
-          onFailure: err => console.log(err)
+          onFailure: (error) => {
+            this.setState({ errorMessage: error.message });
+          }
         });
       }
 
     } else {
-      // TODO: add error handler
-      console.log('new password and re-pass must be same');
+      this.setState({ errorMessage: 'Values in both fields must be the same!' });
     }
 
   };
@@ -75,16 +74,20 @@ export default class ResetPassword extends AuthPiece {
     if (authorized) {
       return (<Redirect to="/"/>);
     }
+
+    const { errorMessage } = this.state;
     return (
-      <SignUpContainer className="sign-up-wrapper">
+
+      <SignUpContainer className="reset-password-wrapper">
         <Grid>
           <Row>
-            <Col md={12} className="sign-up-container" style={{ height: this.state.screenHeight }}>
+            <Col md={12} className="reset-password-container" style={{ height: this.state.screenHeight }}>
 
-              <div className="sign-up-card">
+              <div className="reset-password-card">
                 <h3 className="form-title">Reset Password</h3>
-                <form className="register-form">
+                <form className="reset-password--form">
 
+                  <span className="form-alert">{errorMessage}</span>
                   <input
                     name="new-password"
                     value={this.state.newPassword}
@@ -107,6 +110,11 @@ export default class ResetPassword extends AuthPiece {
                     }}
                     required
                   />
+
+                  <p className="cms-notice">
+                    Password has to contain equal or more than 8 chars,
+                    must have uppercase and lowercase characters and numeric and symbol.
+                  </p>
 
                   <Button
                     className="cms-button"

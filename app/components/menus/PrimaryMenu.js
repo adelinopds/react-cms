@@ -27,6 +27,10 @@ export default class PrimaryMenu extends React.Component {
         >
           <Logo id="logo"/>
 
+          <LinkWrapper><Link to="/user">User</Link></LinkWrapper>
+          <LinkWrapper><Link to="/post">Post</Link></LinkWrapper>
+          <LinkWrapper><Link to="/contact">Contact</Link></LinkWrapper>
+          <hr/>
           <LinkWrapper>
             <div onClick={() => {
               Auth.signOut()
@@ -38,10 +42,6 @@ export default class PrimaryMenu extends React.Component {
             }}>Logout
             </div>
           </LinkWrapper>
-          <LinkWrapper><Link to="/user">User</Link></LinkWrapper>
-          <LinkWrapper><Link to="/post">Post</Link></LinkWrapper>
-          <hr/>
-          <LinkWrapper><Link to="/contact">Contact</Link></LinkWrapper>
         </Menu>
       </div>
     );

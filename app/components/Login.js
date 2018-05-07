@@ -43,7 +43,6 @@ export default class LoginForm extends AuthPiece {
       } else {
         Auth.currentAuthenticatedUser()
           .then((user) => {
-            console.log(user, 'test');
             localStorage.setItem('user-token', 'jwt-token-should-be-save-in-database');
             this.props.history.push('/');
           })
@@ -86,13 +85,6 @@ export default class LoginForm extends AuthPiece {
         errorMessage: `${error.type} ${error.message}`
       });
     }
-  };
-
-
-  forgetPassword = () => {
-    Auth.forgotPassword('pawel.olejniczak.i@gmail.com')
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
   };
 
   render = () => {
@@ -165,12 +157,6 @@ export default class LoginForm extends AuthPiece {
                 </Button>
 
               </form>
-
-              <div
-                className="forgot-password"
-                onClick={() => this.forgetPassword()}>
-                Forgot the password?
-              </div>
 
             </div>
           </Col>

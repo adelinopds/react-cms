@@ -14,11 +14,18 @@
 
 @mixin formAlert($class: 'form-alert') {
   .#{$class} {
-    height: 20px;
+    height: 30px;
+    margin-top: 10px;
     margin-bottom: 10px;
     padding-left: 12px;
     display: block;
     color: red;
+    font-size: 12px;
+  }
+}
+
+@mixin notice($class: 'cms-notice') {
+  .#{$class} {
     font-size: 12px;
   }
 }
