@@ -42,17 +42,16 @@ export const getPosts = (filters) => {
 
 export const deletePosts = (selected, all) => {
 
-  const ids = selected.map(item => item.id);
-  const posts = _.filter(all, (post) => {
-    if (!_.find(ids, id => post.id === id)) {
-      return post;
-    }
-    return null;
+  selected.forEach(element => {
+    const index = all.findIndex(item => item.id === element.id);
+    all.splice(index, 1);
   });
+
+  console.log(all);
 
   return {
     type: PAGE.DELETE_POSTS,
-    payload: posts
+    payload: all
   };
 };
 

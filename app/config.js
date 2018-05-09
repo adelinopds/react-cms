@@ -1,5 +1,5 @@
 const config = {
-  DEBUG: true,
+  DEBUG: false,
   DEMO: true,
   HOST: window.location.origin
 };
